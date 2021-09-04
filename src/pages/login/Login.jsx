@@ -1,91 +1,81 @@
 import React from 'react'
 import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { signIn, signOut } from '../../_actions/userActions';
 import "./login.css";
-import $ from "jquery";
-import { useEffect } from 'react';
-
-
-function Login() {
-
- useEffect(() => {
-   $('#password').focusin(function(){
-  $('form').addClass('up')
-});
-$('#password').focusout(function(){
-  $('form').removeClass('up')
-});
-
-// Panda Eye move
-$(document).on( "mousemove", function( event ) {
-  var dw = $(document).width() / 15;
-  var dh = $(document).height() / 15;
-  var x = event.pageX/ dw;
-  var y = event.pageY/ dh;
-  $('.eye-ball').css({
-    width : x,
-    height : y
-  });
-});
-
-// validation
-
-
-$('.btn').click(function(){
-  $('form').addClass('wrong-entry');
-    setTimeout(function(){ 
-       $('form').removeClass('wrong-entry');
-     },3000 );
-});
-
- });
+import Panda from './panda';
   
 
+function Login() {
+     const dispatch = useDispatch();
+
+      //state for user 
+  const [user , setUser ] = useState({
+   email : '',
+   password : ''
+  });
+  
+  const UserData =(e ,key) => {
+    setUser({...user, [key] : e.target.value })
+  }
+
+  const submitHandler =(e) => {
+     e.preventDefault();
+
+     dispatch(signIn(user));
+   }
+
+   const logOut = () => {
+     dispatch(signOut());
+     console.log('===out');
+   }
+    const userSignIn = useSelector((store) => store.userStore);
+   
+
+      const userInfos = JSON.parse(localStorage.getItem("userInfo"));
+       const { loggedIn } = userSignIn;
+      const { message , userInfo } = userSignIn.user
+ 
+       if(message || userInfo || loggedIn){
+         console.log(message , userInfo , loggedIn);
+         console.log(userSignIn , loggedIn);
+       }
+ 
        return (
          <>
-         {/* panda anime */}
-           <div className="panda">
-             <div className="ear"></div>
-             <div className="face">
-               <div className="eye-shade"></div>
-               <div className="eye-white">
-                 <div className="eye-ball"></div>
-               </div>
-               <div className="eye-shade rgt"></div>
-               <div className="eye-white rgt">
-                 <div className="eye-ball"></div>
-               </div>
-               <div className="nose"></div>
-               <div className="mouth"></div>
-             </div>
-             <div className="body"> </div>
-             <div className="foot">
-               <div className="finger"></div>
-             </div>
-             <div className="foot rgt">
-               <div className="finger"></div>
-             </div>
-           </div>
-           {/* form start */}
-           <form>
-             <div className="hand"></div>
-             <div className="hand rgt"></div>
-             <h1>Panda Login</h1>
-             <div className="form-group">
-               <input required="required" className="form-control" />
-               <label className="form-label">Username </label>
-             </div>
-             <div className="form-group">
-               <input
-                 id="password"
-                 type="password"
-                 required="required"
-                 className="form-control"
-               />
-               <label className="form-label">Password</label>
-               <p className="alert">Invalid Credentials..!!</p>
-               <button className="btn">Login </button>
-             </div>
-           </form>
+                <Panda />
+               {/* form start */}
+               <form onSubmit={submitHandler}>
+                 <div className="hand"></div>
+                 <div className="hand rgt"></div>
+                 <h1>Panda Login</h1>
+                 <div className="form-group">
+                   <input
+                     required="required"
+                     className="form-control"
+                     placeholder="Enter Email"
+                     value={user.email}
+                     onChange={(e) => UserData(e, "email")}
+                   />
+                   <label className="form-label">Username </label>
+                 </div>
+                 <div className="form-group">
+                   <input
+                     id="password"
+                     type="password"
+                     required="required"
+                     className="form-control"
+                     value={user.password}
+                     onChange={(e) => UserData(e, "password")}
+                   />
+                   <label className="form-label">Password</label>
+                   <p className="alert">{message}</p>
+                   <button className="btn" type="submit">
+                     Sign In 
+                   </button>
+                 </div>
+               </form>
+          
          </>
        );
 }
