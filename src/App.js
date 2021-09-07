@@ -1,45 +1,58 @@
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link  ,Switch ,Route } from 'react-router-dom';
-import './App.css';
-import AdminRoute from './components/AdminRoute';
+import { Link  ,Switch ,Route ,useHistory ,Redirect } from 'react-router-dom';
+ import AdminRoute from './components/AdminRoute';
 import UserRoute from './components/UserRoute';
-import Cart from './pages/Home/cart';
-import Home from './pages/Home/Home';
+import Category from './pages/Category/Category';
+import {useEffect, useState } from 'react';
+ import Home from './pages/Home/Home';
 import Login from './pages/login/Login';
+import  './pages/login/login.css';
 import Product from './pages/Product';
 import { signOut } from './_actions/userActions';
-
+ import "./App.css";
+import Auth from './_helpers/auth';
+import Cart from './pages/CartList/cart';
+import Loader from './components/Loader/Loader'
+import AddProduct from './pages/Product/AddProduct';
 function App() {
      const dispatch = useDispatch();
-      const userSignIn = useSelector((store) => store.userStore);
-   
-      const userInfos = JSON.parse(localStorage.getItem("userInfo"));
-       const { loggedIn } = userSignIn;
-   
-   const logOut = () => {
-     dispatch(signOut());
-    };
+     const history = useHistory();
+
+     const [restloader, setrestLoader] = useState(true);
+       const userSignIn = useSelector((store) => store.userStore);
+       const userStorage = JSON.parse(localStorage.getItem("userInfo"));
+        const { loggedIn ,user } = userSignIn; 
+        //  const admin = Auth.Admin_Role();
+        //  const userRole = Auth.User_Role();
+
+    useEffect(() => {
+        setInterval(() => {
+          setrestLoader(false);
+        }, 2000);
+    }, [])
+     
   return (
     <div className="App">
       {loggedIn ? (
-        <>
-          <Link to="cart">cart </Link> <br/>
-          <Link to="home">Home</Link> <br />
-          <Link to="product">Product</Link> <br />
-          <button type="button" onClick={logOut}>
-            Log out
-          </button>
-        </>
+        <Redirect
+          to={{
+            pathname: "/home",
+          }}
+        />
       ) : (
         <Login />
       )}
 
       <Switch>
         <Route exact path="/signin" component={Login} />
+
+        <Route exact path="/home" component={Home} />
         <Route exact path="/userin" component={Login} />
         <AdminRoute path="/cart" component={Cart} />
-        <AdminRoute path="/home" component={Home} />
-        <UserRoute path="/product" component={Product} />
+        <AdminRoute path="/category" component={Category} />
+        <AdminRoute path="/product" component={AddProduct} />
+        {/* <UserRoute path="/product" component={Product} /> */}
       </Switch>
     </div>
   );

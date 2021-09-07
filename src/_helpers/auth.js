@@ -1,26 +1,29 @@
- 
 
+const userInfos = JSON.parse(localStorage.getItem("userInfo"));
+ 
 const Auth = {
-   authenticate() {
-    
-  },
+
   Admin_Role() {
-    const userInfos = JSON.parse(localStorage.getItem("userInfo"));
-    const { userInfo } = userInfos;
-    const { role , Token } = userInfo;
-    return role ;
+
+    if (userInfos) {
+      const { userInfo } = userInfos;
+      const { role, Token } = userInfo;
+      return role=== 'admin';
+    }
   },
   User_Role() {
-    const userInfos = JSON.parse(localStorage.getItem("userInfo"));
-    const { userInfo } = userInfos;
-    const { role , Token } = userInfo;
-    return role ;
+    if (userInfos) {
+      const { userInfo } = userInfos;
+      const { role } = userInfo;
+      return role === 'user';
+    }
   },
   getToken() {
-        const userInfos = JSON.parse(localStorage.getItem("userInfo"));
-        const { userInfo } = userInfos;
-        const { role, Token } = userInfo;
-        return `bearer ${Token}`;
+    if (userInfos) {
+      const { userInfo } = userInfos;
+      const { token } = userInfo;
+      return `bearer ${token}`;
+    }
   },
 };
 export default Auth;

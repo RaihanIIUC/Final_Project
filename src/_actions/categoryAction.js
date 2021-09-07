@@ -14,19 +14,24 @@ export const setCategoryInsertError = (error) => {
     payload: error,
   };
 };
-export const setUserLogOut = () => {
-  return {
-    type: ActionType.USER_SIGNOUT,
-  };
-};
+ 
 
-export const categoryInsertAction  = (category) => {
+export const categoryAddAction  = (category) => {
   return async (dispatch, action) => {
     try {
-      const response = await axios.post("http://localhost:8080/category", {
-        name: category.name,
-        description: category.description,
-      }, Auth.getToken() );
+      const response = await axios.post(
+        "http://localhost:8080/category",
+        {
+          name: category.name,
+          description: category.description,
+          image: category.image,
+        },
+        {
+          headers: {
+            Authorization: Auth.getToken(),
+          },
+        }
+      );
 
       dispatch(setCategoryData(response.data));
       localStorage.setItem("categoryInfo", JSON.stringify(response.data));
@@ -35,10 +40,4 @@ export const categoryInsertAction  = (category) => {
     }
   };
 };
-
-export const signOut = () => {
-  return async (dispatch, action) => {
-    dispatch(setUserLogOut());
-    localStorage.removeItem("userInfo");
-  };
-};
+ 

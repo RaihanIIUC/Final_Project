@@ -1,11 +1,12 @@
 import React from 'react'
+import Sidebar from '../../components/Layout/Sidebar';
 
 function Product() {
     return (
-        <div>
-            Product page 
-        </div>
-    )
+      <div>
+        <Sidebar>Product page</Sidebar>
+      </div>
+    );
 }
 
 export default Product;
