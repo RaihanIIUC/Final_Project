@@ -14,6 +14,18 @@ export const setCategoryInsertError = (error) => {
     payload: error,
   };
 };
+export const setAllCategorySuccess = (Allcategory) => {
+  return {
+    type: ActionType.ALL_CATEGORY_GETTING_SUCCESS,
+    payload: Allcategory,
+  };
+};
+export const setAllCategoryFailed = (error) => {
+  return {
+    type: ActionType.ALL_CATEGORY_GETTING_SUCCESS,
+    payload: error,
+  };
+};
  
 
 export const categoryAddAction  = (category) => {
@@ -37,6 +49,27 @@ export const categoryAddAction  = (category) => {
       localStorage.setItem("categoryInfo", JSON.stringify(response.data));
     } catch (error) {
       dispatch(setCategoryInsertError(error.response));
+    }
+  };
+};
+ 
+
+export const getAllCategoryAction  = ( ) => {
+  return async (dispatch, action) => {
+    try {
+      const response = await axios.get(
+        "http://localhost:8080/category",{},
+        {
+          headers: {
+            Authorization: Auth.getToken(),
+          },
+        }
+      );
+    
+      dispatch(setAllCategorySuccess(response.data));
+     } catch (error) {
+      dispatch(setAllCategoryFailed(error.response));
+  
     }
   };
 };

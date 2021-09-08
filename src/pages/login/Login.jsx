@@ -15,7 +15,7 @@ function Login() {
    email : '',
    password : ''
   });
-  
+
   const UserData =(e ,key) => {
     setUser({...user, [key] : e.target.value })
   }

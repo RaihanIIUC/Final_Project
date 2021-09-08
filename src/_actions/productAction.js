@@ -15,7 +15,7 @@ export const setProudctInsertError = (error) => {
   };
 };
 
-export const productAddAction = (product) => {
+export const productAddAction = (product ,category ) => {
   return async (dispatch, action) => {
     try {
       const response = await axios.post(
@@ -27,7 +27,7 @@ export const productAddAction = (product) => {
            image: product.image,
            stock : product.stock,
            category : {
-               
+               _id : category.id
            }
         },
         {
@@ -36,7 +36,6 @@ export const productAddAction = (product) => {
           },
         }
       );
-
       dispatch(setProductData(response.data));
       localStorage.setItem("productInfo", JSON.stringify(response.data));
     } catch (error) {
