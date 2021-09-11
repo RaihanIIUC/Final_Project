@@ -5,12 +5,13 @@ import Loader from '../../components/Loader/Loader';
 import { categoryAddAction } from '../../_actions/categoryAction';
 import Auth from '../../_helpers/auth';
  import "./category.css";
+
+
 function Category() {
     const dispatch = useDispatch();
    const [restloader, setrestLoader] = useState(true);
 
-  //state for user
-  const [category, setCategory] = useState({
+   const [category, setCategory] = useState({
     name : "",
     description : "",
     image : " ",
@@ -21,13 +22,11 @@ function Category() {
     setCategory({ ...category, [key]: e.target.value });
   };
  
-  console.log(Auth.getToken());
-  
+   
   const submitHandler = (e) => {
     e.preventDefault();
-
     dispatch(categoryAddAction(category));
-    console.log(category)
+    console.log(category);
   };
 
 
@@ -35,7 +34,8 @@ function Category() {
      setInterval(() => {
        setrestLoader(false);
      }, 4000);
-   }, []);
+   }, [restloader]);
+   
   return restloader ? (
     <Loader />
   ) : (

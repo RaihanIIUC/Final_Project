@@ -15,6 +15,8 @@ import Auth from './_helpers/auth';
 import Cart from './pages/CartList/cart';
 import Loader from './components/Loader/Loader'
 import AddProduct from './pages/Product/AddProduct';
+import Products from './pages/Product/All_product/Products';
+import { RouterPath } from './_helpers/RoutePath';
 function App() {
      const dispatch = useDispatch();
      const history = useHistory();
@@ -52,6 +54,7 @@ function App() {
         <AdminRoute path="/cart" component={Cart} />
         <AdminRoute path="/category" component={Category} />
         <AdminRoute path="/product" component={AddProduct} />
+        <AdminRoute path={RouterPath.PRODUCTS} component={Products} />
         {/* <UserRoute path="/product" component={Product} /> */}
       </Switch>
     </div>

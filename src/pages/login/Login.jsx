@@ -24,23 +24,20 @@ function Login() {
      e.preventDefault();
      dispatch(signIn(user));
    }
-
-
-      const userSignIn = useSelector((store) => store.userStore);
    
-       const userStorage = JSON.parse(localStorage.getItem("userInfo"));
-
-       const { error    } = userSignIn
-       
-        console.log(userStorage,'====');
 
     
  useEffect(() => {
-  
    setInterval(() => {
      setrestLoader(false);
    }, 4000);
- }, []);
+ }, [restloader]);
+ 
+
+      const userSignIn = useSelector((store) => store.userStore);
+       const { error    } = userSignIn
+
+
  
  
  

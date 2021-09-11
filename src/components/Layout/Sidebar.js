@@ -1,7 +1,11 @@
+import React, { Component }  from 'react';
 import { Grid } from '@material-ui/core';
 import { Link } from 'react-router-dom'
  import './sidebar.css';
 import Navbars from '../Header/Navbars'
+import { RouterPath } from '../../_helpers/RoutePath';
+
+
 const  Sidebar =(props) => {
     return (
       <div>
@@ -37,19 +41,19 @@ const  Sidebar =(props) => {
                     </Link>
                   </li>
                   <li>
-                    <Link to="#">
+                    <Link to={RouterPath.PRODUCT}>
                       <span className="icon">
                         <i className="fas fa-user-friends"></i>
                       </span>
-                      <span className="item">People</span>
+                      <span className="item">Product</span>
                     </Link>
                   </li>
                   <li>
-                    <Link to="#">
+                    <Link to={RouterPath.PRODUCTS}>
                       <span className="icon">
                         <i className="fas fa-tachometer-alt"></i>
                       </span>
-                      <span className="item">Perfomance</span>
+                      <span className="item">Products</span>
                     </Link>
                   </li>
                   <li>
@@ -68,22 +72,7 @@ const  Sidebar =(props) => {
                       <span className="item">Reports</span>
                     </Link>
                   </li>
-                  <li>
-                    <Link to="#">
-                      <span className="icon">
-                        <i className="fas fa-user-shield"></i>
-                      </span>
-                      <span className="item">Admin</span>
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="#">
-                      <span className="icon">
-                        <i className="fas fa-cog"></i>
-                      </span>
-                      <span className="item">Settings</span>
-                    </Link>
-                  </li>
+     
                 </ul>
               </div>
             </Grid>
