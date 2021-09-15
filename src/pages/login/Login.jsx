@@ -25,17 +25,17 @@ function Login() {
      dispatch(signIn(user));
    }
    
-
+      const userSignIn = useSelector((store) => store.userStore);
+      const { error } = userSignIn;
     
  useEffect(() => {
    setInterval(() => {
      setrestLoader(false);
    }, 4000);
- }, [restloader]);
+ }, []);
  
 
-      const userSignIn = useSelector((store) => store.userStore);
-       const { error    } = userSignIn
+
 
 
  

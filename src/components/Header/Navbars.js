@@ -2,6 +2,7 @@ import React from 'react'
  import "./Navbar.css";
 import { Link } from 'react-router-dom';
 import LogOutMenu from './LogOut';
+import ShoppingCartOutlinedIcon from "@material-ui/icons/ShoppingCartOutlined";
 
  function Navbars() {
     return (
@@ -33,13 +34,24 @@ import LogOutMenu from './LogOut';
                     <Link to="product">Product</Link>
                   </li>
                   <li className="nav__item">
-                    <Link to="category">Category</Link> 
+                    <Link to="category">Category</Link>
                   </li>
                 </ul>
               </nav>
             </div>
             <div className="site-header__end">
-              <LogOutMenu/>
+              <li>
+                <Link to="/cart">My cart</Link>
+              </li>
+
+              <li>
+                <Link to="/cart">
+                  <ShoppingCartOutlinedIcon />
+                </Link>
+              </li>
+              <li>
+                <LogOutMenu />
+              </li>
             </div>
           </div>
         </header>

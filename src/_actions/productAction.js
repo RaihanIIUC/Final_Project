@@ -28,6 +28,21 @@ export const setAllProductFailed = (error) => {
   };
 };
 
+//detail Product 
+export const setCurrentProductSuccess = (product) => {
+  return {
+    type: ActionType.PRODUCT_DETAILS_SUCCESS,
+    payload: product,
+  };
+};
+export const setCurrentProductFailed = (error) => {
+  return {
+    type: ActionType.PRODUCT_DETAILS_FAILED,
+    payload: error,
+  };
+};
+
+
 export const productAddAction = (product  ) => {
   return async (dispatch, action) => {
     try {
@@ -65,7 +80,6 @@ export const getAllProductAction = () => {
     try {
       const response = await axios.get(
         "http://localhost:8080/products",
-        {},
         {
           headers: {
             Authorization: Auth.getToken(),
@@ -76,6 +90,17 @@ export const getAllProductAction = () => {
       dispatch(setAllProductSuccess(response.data));
     } catch (error) {
       dispatch(setAllProductFailed(error.response));
+    }
+  };
+};
+export const requestProductDetails = (pid) => {
+  return async (dispatch, action) => {
+    try {
+      const response = await axios.get(`http://localhost:8080/products/${pid}`);
+
+      dispatch(setCurrentProductSuccess(response.data));
+    } catch (error) {
+      dispatch(setCurrentProductFailed(error.response));
     }
   };
 };

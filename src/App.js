@@ -15,24 +15,20 @@ import Auth from './_helpers/auth';
 import Cart from './pages/CartList/cart';
 import Loader from './components/Loader/Loader'
 import AddProduct from './pages/Product/AddProduct';
-import Products from './pages/Product/All_product/Products';
-import { RouterPath } from './_helpers/RoutePath';
+ import { RouterPath } from './_helpers/RoutePath';
+import ProudctList from './pages/Product/All_product/ProudctList';
+import ProductDetails from './pages/Product/ProductOverView/ProductDetails';
 function App() {
      const dispatch = useDispatch();
      const history = useHistory();
 
      const [restloader, setrestLoader] = useState(true);
        const userSignIn = useSelector((store) => store.userStore);
-       const userStorage = JSON.parse(localStorage.getItem("userInfo"));
-        const { loggedIn ,user } = userSignIn; 
+         const { loggedIn ,user } = userSignIn; 
         //  const admin = Auth.Admin_Role();
         //  const userRole = Auth.User_Role();
 
-    useEffect(() => {
-        setInterval(() => {
-          setrestLoader(false);
-        }, 2000);
-    }, [])
+  
      
   return (
     <div className="App">
@@ -51,10 +47,11 @@ function App() {
 
         <Route exact path="/home" component={Home} />
         <Route exact path="/userin" component={Login} />
-        <AdminRoute path="/cart" component={Cart} />
+         <AdminRoute path="/cart" component={Cart} />
         <AdminRoute path="/category" component={Category} />
         <AdminRoute path="/product" component={AddProduct} />
-        <AdminRoute path={RouterPath.PRODUCTS} component={Products} />
+        <AdminRoute path="/products/:id" component={ProductDetails} />
+        <AdminRoute path={RouterPath.PRODUCTS} component={ProudctList} />
         {/* <UserRoute path="/product" component={Product} /> */}
       </Switch>
     </div>

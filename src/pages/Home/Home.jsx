@@ -6,6 +6,10 @@ import '../login/login.css';
 
 function Home() {
        const [restloader, setrestLoader] = useState(true);
+ 
+ 
+ 
+ 
  useEffect(() => {
    setInterval(() => {
      setrestLoader(false);

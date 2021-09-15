@@ -147,7 +147,6 @@ function AddProduct() {
               className="input"
               value={product.category._id}
               onChange={(e) => productData(e, "_id")}
-              select
             >
               {categorys.map((cat, index) => {
                 return (

@@ -1,5 +1,7 @@
 import axios from "axios";
+import persistStore from "redux-persist/es/persistStore";
 import localStorage from "redux-persist/es/storage";
+import storage from "redux-persist/lib/storage";
 import { ActionType } from "../_ActionType";
 import { history } from "../_helpers/history";
 
@@ -42,8 +44,7 @@ export const signIn = (user ) => {
 export const signOut = () => {
   return async (dispatch, action) => {
     dispatch(setUserLogOut());
-    localStorage.removeItem("userInfo");
-    history.push('/');
-     document.location.reload();
+     history.push('/');
+      document.location.reload();
    }
 }

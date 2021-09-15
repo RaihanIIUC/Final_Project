@@ -10271,6 +10271,11 @@ react-transition-group@^4.3.0, react-transition-group@^4.4.0, react-transition-g
     loose-envify "^1.4.0"
     prop-types "^15.6.2"
 
+react-use-cart@^1.11.2:
+  version "1.11.2"
+  resolved "https://registry.yarnpkg.com/react-use-cart/-/react-use-cart-1.11.2.tgz#a6ca3f6b3fa69d5d2db529bbc21fc917678d709d"
+  integrity sha512-hszGDHX+Dr/xHuIBtvdQTMTonEIZEhlh4MP//mLZ4B0XjSUCCLIfETZJijq7EXfz1dhdl4f0Mg4QqoyZ8+aFNQ==
+
 react@^15.6.1:
   version "15.7.0"
   resolved "https://registry.yarnpkg.com/react/-/react-15.7.0.tgz#10308fd42ac6912a250bf00380751abc41ac7106"
