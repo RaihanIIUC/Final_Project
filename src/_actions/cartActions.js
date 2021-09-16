@@ -2,12 +2,15 @@ import axios from "axios";
 import { ActionType } from "../_ActionType";
 import Auth from "../_helpers/auth";
 
-export const setAddToCart = (product) => {
-  return {
-    type: ActionType.ADD_TO_CART,
-    payload: product,
-  };
-};
+export const setAddToCart = (data) => ({
+  type: ActionType.ADD_TO_CART,
+  payload: data.products,
+});
+ export const setCart = (data) => ({
+   type: ActionType.CART_REQUEST_SUCCESS,
+   payload: data.products,
+ });
+
  
 export const setCartQuantityData = (data) => ({
   type: ActionType.CART_QUANTITY,
@@ -37,6 +40,23 @@ export const requestAddToCartAction = (item, quantity) => {
       console.log(response.data,null, '');
     } catch (error) {
       console.log(error, null,' ');
+    }
+  };
+};
+
+
+export const requestCart = () => {
+  return async (dispatch, getState) => {
+    try {
+      const response = await axios.get("http://localhost:8080/cart", {
+        headers: {
+          Authorization: Auth.getToken(),
+        },
+      });
+      dispatch(setCart(response.data));
+      console.log(response.data, null, ' ');
+    } catch (err) {
+      console.error(err, null, ' ');
     }
   };
 };

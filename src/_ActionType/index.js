@@ -29,6 +29,7 @@ export const ActionType = {
 
   // add to cart action type
   ADD_TO_CART: "ADD_TO_CART",
+  CART_REQUEST_SUCCESS : "CART_REQUEST_SUCCESS",
   REMOVE_ITEM: "REMOVE_ITEM",
   SUB_QUANTITY: "SUB_QUANTITY",
   CART_QUANTITY: "CART_QUANTITY",

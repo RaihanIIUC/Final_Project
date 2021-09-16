@@ -1,7 +1,7 @@
 import { AcUnitTwoTone } from "@material-ui/icons";
 import { ActionType } from "../_ActionType";
 
-const initialState = {
+const productState = {
   product: [],
   products : [],
   currentProduct : [],
@@ -9,7 +9,7 @@ const initialState = {
   loading: false,
 };
 
-const productReducer = (state = initialState, action) => {
+const productReducer = (state = productState, action) => {
   switch (action.type) {
     case ActionType.PRODUCT_ADD_SUCCESSFULLY:
       return { ...state, product: action.payload };

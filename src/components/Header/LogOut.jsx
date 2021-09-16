@@ -18,8 +18,8 @@ import { history } from '../../_helpers/history';
   };
 
    const handleLogout = () => {
-       handleClose();
        dispatch(signOut());
+       handleClose();
        console.log('hello you are logged out!!!')
       };
 

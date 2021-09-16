@@ -18,6 +18,7 @@ import AddProduct from './pages/Product/AddProduct';
  import { RouterPath } from './_helpers/RoutePath';
 import ProudctList from './pages/Product/All_product/ProudctList';
 import ProductDetails from './pages/Product/ProductOverView/ProductDetails';
+import CartList from './pages/CartList/CartList';
 function App() {
      const dispatch = useDispatch();
      const history = useHistory();
@@ -27,7 +28,13 @@ function App() {
          const { loggedIn ,user } = userSignIn; 
         //  const admin = Auth.Admin_Role();
         //  const userRole = Auth.User_Role();
-
+  //  useEffect(() => {
+  //    if(Auth.Admin_Role){
+  //      history.push('/home');
+  //    }else{
+  //      dispatch(signOut());
+  //    }
+  //  }, [])
   
      
   return (
@@ -47,7 +54,7 @@ function App() {
 
         <Route exact path="/home" component={Home} />
         <Route exact path="/userin" component={Login} />
-         <AdminRoute path="/cart" component={Cart} />
+         <AdminRoute path="/cartlist" component={CartList} />
         <AdminRoute path="/category" component={Category} />
         <AdminRoute path="/product" component={AddProduct} />
         <AdminRoute path="/products/:id" component={ProductDetails} />

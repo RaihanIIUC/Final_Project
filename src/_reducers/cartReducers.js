@@ -1,15 +1,15 @@
 import { ActionType } from "../_ActionType";
 
-const initialState = {
- cartList : [],
+const cartstate = {
+ cart : [],
  };
 
-const cartReducer = (state = initialState, action) => {
+const cartReducer = (state = cartstate, action) => {
   switch (action.type) {
     case ActionType.ADD_TO_CART:
-      return { ...state, cartList: action.payload };
-   
- 
+      return { ...state, cart: action.payload };
+   case ActionType.CART_REQUEST_SUCCESS: 
+      return {...state, cart : [], cart : action.payload }
     default:
       return state;
   }

@@ -15,6 +15,8 @@ import {
   requestAddToCartAction,
   setCartQuantityData,
 } from "../../../_actions/cartActions";
+import Auth from "../../../_helpers/auth";
+import { signOut } from "../../../_actions/userActions";
 
 export const ShirtWrapper = styled(Grid)`
   img {
@@ -53,9 +55,11 @@ const ProudctList = () => {
   
   const history = useHistory();
   const [restloader, setrestLoader] = useState(true);
- 
+  
 
   useEffect(() => {
+    
+
     dispatch(getAllProductAction());
     setInterval(() => {
       setrestLoader(false);
