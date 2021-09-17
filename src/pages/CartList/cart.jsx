@@ -5,7 +5,8 @@ import Loader from '../../components/Loader/Loader';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import CartInsert from "./CartInsert";
-
+import CartItem from "./CartItem";
+ 
 
 
 const useStyles = makeStyles((theme) => ({
@@ -35,7 +36,7 @@ function Cart() {
     ) : (
       <div>
         <Sidebar>
-         <CartInsert />
+        <CartItem />
         </Sidebar>
       </div>
     );

@@ -12,14 +12,13 @@ import Product from './pages/Product';
 import { signOut } from './_actions/userActions';
  import "./App.css";
 import Auth from './_helpers/auth';
-import Cart from './pages/CartList/cart';
-import Loader from './components/Loader/Loader'
+ import Loader from './components/Loader/Loader'
 import AddProduct from './pages/Product/AddProduct';
  import { RouterPath } from './_helpers/RoutePath';
 import ProudctList from './pages/Product/All_product/ProudctList';
 import ProductDetails from './pages/Product/ProductOverView/ProductDetails';
-import CartList from './pages/CartList/CartList';
-function App() {
+import Cart from './pages/CartList/cart';
+     function App() {
      const dispatch = useDispatch();
      const history = useHistory();
 
@@ -54,7 +53,8 @@ function App() {
 
         <Route exact path="/home" component={Home} />
         <Route exact path="/userin" component={Login} />
-         <AdminRoute path="/cartlist" component={CartList} />
+        {/* <AdminRoute path="/cartlist" component={CartList} /> */}
+        <AdminRoute path={RouterPath.CART_LIST} component={Cart} />
         <AdminRoute path="/category" component={Category} />
         <AdminRoute path="/product" component={AddProduct} />
         <AdminRoute path="/products/:id" component={ProductDetails} />

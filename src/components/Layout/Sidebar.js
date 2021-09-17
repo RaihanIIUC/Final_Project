@@ -45,7 +45,7 @@ const  Sidebar =(props) => {
                       <span className="icon">
                         <i className="fas fa-user-friends"></i>
                       </span>
-                      <span className="item">Product</span>
+                      <span className="item">Add Product</span>
                     </Link>
                   </li>
                   <li>
@@ -57,11 +57,11 @@ const  Sidebar =(props) => {
                     </Link>
                   </li>
                   <li>
-                    <Link to="#">
+                    <Link to={RouterPath.CART_LIST}>
                       <span className="icon">
                         <i className="fas fa-database"></i>
                       </span>
-                      <span className="item">Development</span>
+                      <span className="item">Cart List</span>
                     </Link>
                   </li>
                   <li>
