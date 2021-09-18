@@ -4,6 +4,7 @@ import localStorage from "redux-persist/es/storage";
 import storage from "redux-persist/lib/storage";
 import { ActionType } from "../_ActionType";
 import { history } from "../_helpers/history";
+import { RouterPath } from "../_helpers/RoutePath";
 
 export const setUserData = (user) => {
   return {
@@ -35,6 +36,8 @@ export const signIn = (user ) => {
       const {message ,userInfo   } = response.data;
        if(userInfo && message){
        dispatch(setUserData(response.data));
+       window.location.reload();
+
       }else{
       dispatch(setUserError(message));
       }
@@ -45,7 +48,7 @@ export const signOut = () => {
   return async (dispatch, action) => {
       dispatch(setUserLogOut());
      history.push('/');
-    // document.location.reload();
+    document.location.reload();
 
    }
 }

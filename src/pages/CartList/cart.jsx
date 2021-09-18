@@ -27,7 +27,7 @@ function Cart() {
  useEffect(() => {
    setInterval(() => {
      setrestLoader(false);
-   }, 4000);
+   }, 2000);
  }, []);
 
 

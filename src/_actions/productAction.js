@@ -65,12 +65,13 @@ export const productAddAction = (product  ) => {
         }
       );
       dispatch(setProductData(response.data));
-      localStorage.setItem("productInfo", JSON.stringify(response.data));
-    } catch (error) {
+
+     } catch (error) {
       dispatch(setProudctInsertError(error.response));
     }
+
   };
-};
+ };
 
 
 
@@ -88,9 +89,11 @@ export const getAllProductAction = () => {
       );
 
       dispatch(setAllProductSuccess(response.data));
+
     } catch (error) {
       dispatch(setAllProductFailed(error.response));
     }
+ 
   };
 };
 export const requestProductDetails = (pid) => {
@@ -99,8 +102,10 @@ export const requestProductDetails = (pid) => {
       const response = await axios.get(`http://localhost:8080/products/${pid}`);
 
       dispatch(setCurrentProductSuccess(response.data));
+
     } catch (error) {
       dispatch(setCurrentProductFailed(error.response));
     }
+ 
   };
 };

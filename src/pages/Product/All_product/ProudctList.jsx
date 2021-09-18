@@ -17,6 +17,7 @@ import {
 } from "../../../_actions/cartActions";
 import Auth from "../../../_helpers/auth";
 import { signOut } from "../../../_actions/userActions";
+import Home from "../../Home/Home";
 
 export const ShirtWrapper = styled(Grid)`
   img {
@@ -87,7 +88,7 @@ const ProudctList = () => {
   return restloader ? (
     <Loader />
   ) : (
-    <Sidebar>
+    <Home>
       <Grid container spacing={1} justifyContent={"center"}>
         <Grid item md={12}>
           <Grid item md={9} justifyContent={"center"}>
@@ -119,7 +120,7 @@ const ProudctList = () => {
           </ShirtWrapper>
         ))}
       </Grid>
-    </Sidebar>
+    </Home>
   );
 };
 
