@@ -12,6 +12,7 @@ import styled from "styled-components";
 import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 import PhotoCamera from "@material-ui/icons/PhotoCamera";
+import Home from "../Home/Home";
 
 const customStyles = (value) => ({
   control: (provided, state) => ({
@@ -70,7 +71,8 @@ function AddProduct() {
     dispatch(getAllCategoryAction());
     setInterval(() => {
       setrestLoader(false);
-    }, 4000);
+    }, 2000);
+ 
   }, []);
 
   const { categorys } = useSelector((store) => store.categoryStore);
@@ -104,7 +106,7 @@ function AddProduct() {
     <Loader />
   ) : (
     <>
-      <Sidebar>
+      <Home>
         <div className="form">
           <div className="subtitle">Product </div>
           <div className="input-container ic1">
@@ -191,7 +193,7 @@ function AddProduct() {
             Product Add
           </button>
         </div>
-      </Sidebar>
+      </Home>
     </>
   );
 }
