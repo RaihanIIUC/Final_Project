@@ -39,19 +39,15 @@ import Cart from './pages/CartList/cart';
   return (
     <div className="App">
       {loggedIn ? (
-        <Redirect
-          to={{
-            pathname: "/home",
-          }}
-        />
-      ) : (
+         <Home />
+            ) : (
         <Login />
       )}
 
       <Switch>
         <Route exact path="/signin" component={Login} />
 
-        <Route exact path="/home" component={Home} />
+        <AdminRoute exact path="/home" component={Home} />
         <Route exact path="/userin" component={Login} />
         {/* <AdminRoute path="/cartlist" component={CartList} /> */}
         <AdminRoute path={RouterPath.CART_LIST} component={Cart} />

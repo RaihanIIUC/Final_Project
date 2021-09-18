@@ -43,8 +43,9 @@ export const signIn = (user ) => {
 
 export const signOut = () => {
   return async (dispatch, action) => {
-    dispatch(setUserLogOut());
+      dispatch(setUserLogOut());
      history.push('/');
-      document.location.reload();
+    // document.location.reload();
+
    }
 }
