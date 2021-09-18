@@ -46,7 +46,8 @@ export const categoryAddAction  = (category) => {
       );
 
       dispatch(setCategoryData(response.data));
-     } catch (error) {
+      localStorage.setItem("categoryInfo", JSON.stringify(response.data));
+    } catch (error) {
       dispatch(setCategoryInsertError(error.response));
     }
   };
@@ -66,7 +67,6 @@ export const getAllCategoryAction  = ( ) => {
       );
     
       dispatch(setAllCategorySuccess(response.data));
- 
      } catch (error) {
       dispatch(setAllCategoryFailed(error.response));
   

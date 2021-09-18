@@ -38,11 +38,9 @@ export const requestAddToCartAction = (item, quantity) => {
       );
       dispatch(setAddToCart(response.data));
       console.log(response.data,null, '');
-
     } catch (error) {
       console.log(error, null,' ');
     }
- 
   };
 };
 
@@ -57,7 +55,6 @@ export const requestCart = () => {
       });
       dispatch(setCart(response.data));
       console.log(response.data, null, ' ');
- 
     } catch (err) {
       console.error(err, null, ' ');
     }
