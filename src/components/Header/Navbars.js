@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
  import "./Navbar.css";
 import { Link } from 'react-router-dom';
 import LogOutMenu from './LogOut';
@@ -6,15 +6,19 @@ import ShoppingCartOutlinedIcon from "@material-ui/icons/ShoppingCartOutlined";
  import Badge from "@mui/material/Badge";
 import { useDispatch, useSelector } from "react-redux";
 import { RouterPath } from '../../_helpers/RoutePath';
+import { requestCart } from '../../_actions/cartActions';
 
   
 
  function Navbars() {
-
+ const dispatch = useDispatch();
   const { cartList } = useSelector((store) => store.cartStore);
 
   
     const  cartLength = cartList?.length;
+    useEffect(() => {
+     dispatch(requestCart());
+    }, [])
   
  
     return (

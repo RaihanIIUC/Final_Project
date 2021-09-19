@@ -6,7 +6,7 @@ import Navbars from '../Header/Navbars'
 import { RouterPath } from '../../_helpers/RoutePath';
 
 
-const  Sidebar =(props) => {
+const  Sidebar =({ children }) => {
     return (
       <div>
         <div className="wrapper">
@@ -78,7 +78,7 @@ const  Sidebar =(props) => {
             </Grid>
             
             <Grid item xs={10}>
-            {props.children}
+            {children}
             </Grid>
  
           </Grid>

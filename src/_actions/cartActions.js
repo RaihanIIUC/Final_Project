@@ -43,9 +43,10 @@ export const requestAddToCartAction = (item, quantity) => {
           },
         }
       );
+
       dispatch(setAddToCart(response.data));
       console.log(response.data,null, '');
-
+      dispatch(requestCart());
     } catch (error) {
       console.log(error, null,' ');
     }
