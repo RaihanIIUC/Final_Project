@@ -2,6 +2,7 @@ import { ActionType } from "../_ActionType";
 
 const cartstate = {
  cart : [],
+ cartList : [],
  };
 
 const cartReducer = (state = cartstate, action) => {
@@ -9,7 +10,7 @@ const cartReducer = (state = cartstate, action) => {
     case ActionType.ADD_TO_CART:
       return { ...state, cart: action.payload };
    case ActionType.CART_REQUEST_SUCCESS: 
-      return {...state, cart : [], cart : action.payload }
+      return { ...state, cartList: action.payload };
     default:
       return state;
   }

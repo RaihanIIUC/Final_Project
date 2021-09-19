@@ -3,8 +3,17 @@ import React from 'react'
 import { Link } from 'react-router-dom';
 import LogOutMenu from './LogOut';
 import ShoppingCartOutlinedIcon from "@material-ui/icons/ShoppingCartOutlined";
+ import Badge from "@mui/material/Badge";
+import { useDispatch, useSelector } from "react-redux";
+
+  
 
  function Navbars() {
+
+  const { cartList } = useSelector((store) => store.cartStore);
+
+   const cartLength = cartList.length;
+
     return (
       <div>
         <header className="site-header">
@@ -46,7 +55,13 @@ import ShoppingCartOutlinedIcon from "@material-ui/icons/ShoppingCartOutlined";
 
               <li>
                 <Link to="/cart">
-                  <ShoppingCartOutlinedIcon />
+                  <Badge
+                    // onClick={gotoCart}
+                    badgeContent={cartLength}
+                    color="primary"
+                  >
+                    <ShoppingCartOutlinedIcon color="action" />
+                  </Badge>
                 </Link>
               </li>
               <li>

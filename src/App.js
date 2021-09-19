@@ -50,10 +50,10 @@ import Cart from './pages/CartList/cart';
         <Route exact path="/home" component={Home} />
          <Route exact path="/userin" component={Login} />
         {/* <AdminRoute path="/cartlist" component={CartList} /> */}
-        <AdminRoute path={RouterPath.CART_LIST} component={Cart} />
+        <Route path={RouterPath.CART_LIST} component={Cart} />
         <AdminRoute path="/category" component={Category} />
         <AdminRoute path="/product" component={AddProduct} />
-        <AdminRoute path="/products/:id" component={ProductDetails} />
+        <Route path="/products/:id" component={ProductDetails} />
         <AdminRoute path={RouterPath.PRODUCTS} component={ProudctList} />
         {/* <UserRoute path="/product" component={Product} /> */}
       </Switch>
