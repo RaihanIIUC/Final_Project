@@ -35,14 +35,14 @@ function App() {
   //    }
   //  }, [])
 
-  return (
+  return   (
     <div className="App">
-      {/* {loggedIn ? <Home /> : <Login />} */}
-       { !loggedIn && <Login /> }
+    
       <Switch>
         <Route exact path="/signin" component={Login} />
 
         <Route exact path="/home" component={Home} />
+        <Route exact path="/" component={Home} />
         <Route exact path="/userin" component={Login} />
         {/* <AdminRoute path="/cartlist" component={CartList} /> */}
         <Route path={RouterPath.CART_LIST} component={Cart} />
