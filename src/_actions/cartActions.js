@@ -17,6 +17,12 @@ export const setCartQuantityData = (data) => ({
   type: ActionType.CART_QUANTITY,
   payload: data,
 });
+ 
+export const setCheckOut = (checkout) => ({
+  type: ActionType.CART_CHECKOUT,
+  payload: checkout,
+});
+
 
 
 export const requestAddToCartAction = (item, quantity) => {
@@ -63,4 +69,16 @@ export const requestCart = () => {
       console.error(err, null, ' ');
     }
   };
+};
+
+
+export const requestCheckOut = () => {
+  return async (dispatch) => {
+    const { data } = await axios.get(`${RouterPath.BASE_URL}/order/checkout`, {
+      headers: {
+        authorization:  Auth.getToken(),
+      },
+    });
+    dispatch(setCheckOut(data));
+   };
 };

@@ -13,8 +13,10 @@ import { RouterPath } from '../../_helpers/RoutePath';
 
   const { cartList } = useSelector((store) => store.cartStore);
 
-   const cartLength = cartList.length;
-
+  
+    const  cartLength = cartList?.length;
+  
+ 
     return (
       <div>
         <header className="site-header">

@@ -1,5 +1,5 @@
 import { Button } from "@material-ui/core";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   requestCart,
@@ -8,27 +8,33 @@ import {
 import { RouterPath } from "../../_helpers/RoutePath";
  import { Wrapper } from "./CartItem.styles";
  import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import { useHistory } from "react-router";
  
  
 const CartItem = ( ) => {
+  const history = useHistory();
   const dispatch = useDispatch();
-  const { cartList } = useSelector((store) => store.cartStore);
+   const { cartList } = useSelector((store) => store.cartStore);
 
-   const len = cartList.length;
-  console.log(cartList, null, null, " ");
-  console.log(len, null, null, " products in cart");
-
+   const  len = cartList?.length;
+ 
+ 
  
 
 
+ 
  useEffect(() => {
    dispatch(requestCart());
+   if (!len || !cartList) {
+     history.push(`${RouterPath.PRODUCTS}`);
+   }
  }, [ ])
 
 const addToCart = (e, productId, existingQuantity) => {
   e.preventDefault();
   dispatch(requestAddToCartAction(productId, existingQuantity + 1));
   console.log(existingQuantity + 1, null, undefined, ' ');
+// window.location.reload(false);
 };
 
 
@@ -36,11 +42,13 @@ const removeFromCart = (e, productId, existingQuantity )=> {
     e.preventDefault();
    dispatch(requestAddToCartAction(productId, existingQuantity - 1));
  console.log(existingQuantity-1, null, ' ');
- }
+// window.location.reload(false);
+}
 
  const deleteHandler = ( productId) => {
    dispatch(requestAddToCartAction(productId, 0));
-   console.log('product remove from cart');
+   console.log("product remove from cart");
+   window.location.reload(false);
  }
 
  cartList.map((product) => {
@@ -84,9 +92,8 @@ const removeFromCart = (e, productId, existingQuantity )=> {
                     +
                   </Button>
                 </div>
-                <p  onClick={() => deleteHandler(product.productId)}>
-                  <DeleteForeverIcon
-                                     />
+                <p onClick={() => deleteHandler(product.productId)}>
+                  <DeleteForeverIcon />
                 </p>
               </div>
               <img
@@ -94,6 +101,8 @@ const removeFromCart = (e, productId, existingQuantity )=> {
                 alt=" "
               />
             </Wrapper>
+
+           
           </>
         );
       })}

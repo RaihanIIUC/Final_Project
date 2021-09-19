@@ -6,7 +6,11 @@ import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import CartInsert from "./CartInsert";
 import CartItem from "./CartItem";
- 
+import { Button } from "@material-ui/core";
+import { useDispatch, useSelector } from "react-redux";
+import { requestCheckOut } from "../../_actions/cartActions";
+import { useHistory } from "react-router";
+
 
 
 const useStyles = makeStyles((theme) => ({
@@ -22,21 +26,36 @@ const useStyles = makeStyles((theme) => ({
 
 
 function Cart() {
- 
+   const dispatch = useDispatch();
+   const history = useHistory();
        const [restloader, setrestLoader] = useState(true);
- useEffect(() => {
+ 
+       useEffect(() => {
    setInterval(() => {
      setrestLoader(false);
    }, 2000);
  }, []);
 
 
+  const checkOutHandler = () => {
+    dispatch(requestCheckOut());
+    history.push('/');
+    console.log('checkOut clicked');
+  };
+
     return restloader ? (
       <Loader />
     ) : (
       <div>
         <Sidebar>
-        <CartItem />
+          <CartItem />
+          <Button
+            variant="contained"
+            color="success"
+            onClick={() => checkOutHandler()}
+          >
+         Checkout
+          </Button>
         </Sidebar>
       </div>
     );
