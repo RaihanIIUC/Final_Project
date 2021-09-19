@@ -1,11 +1,13 @@
 import { Button } from "@material-ui/core";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { requestCart } from "../../_actions/cartActions";
+import {
+  requestCart,
+  requestAddToCartAction,
+} from "../../_actions/cartActions";
 import { RouterPath } from "../../_helpers/RoutePath";
  import { Wrapper } from "./CartItem.styles";
-
-
+ 
  
  
 const CartItem = ( ) => {
@@ -23,13 +25,19 @@ const CartItem = ( ) => {
    dispatch(requestCart());
  }, [ ])
 
-
-const removeFromCart = (id)=> {
-  console.log(id,null,' ');
-}
-const addToCart = (item) => {
-  console.log(item,null,undefined,' ');
+const addToCart = (e, productId, existingQuantity) => {
+  e.preventDefault();
+  dispatch(requestAddToCartAction(productId, existingQuantity + 1));
+  console.log(existingQuantity + 1, null, undefined, ' ');
 };
+
+
+const removeFromCart = (e, productId, existingQuantity )=> {
+    e.preventDefault();
+   dispatch(requestAddToCartAction(productId, existingQuantity - 1));
+ console.log(existingQuantity-1, null, ' ');
+ }
+
 
  cartList.map((product) => {
    const products = product.productId;
@@ -54,16 +62,18 @@ const addToCart = (item) => {
                     size="small"
                     disableElevation
                     variant="contained"
-                    onClick={() => removeFromCart(product.productId._id)}
+                    onClick={(e) =>
+                      removeFromCart(e, product.productId._id, product.quantity)
+                    }
                   >
                     -
                   </Button>
-                  <p>amount</p>
+                  <p>{product.quantity}</p>
                   <Button
                     size="small"
                     disableElevation
                     variant="contained"
-                    onClick={() => addToCart(product.productId)}
+                    onClick={(e) => addToCart(e,product.productId, product.quantity)}
                   >
                     +
                   </Button>

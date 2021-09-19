@@ -5,6 +5,7 @@ import LogOutMenu from './LogOut';
 import ShoppingCartOutlinedIcon from "@material-ui/icons/ShoppingCartOutlined";
  import Badge from "@mui/material/Badge";
 import { useDispatch, useSelector } from "react-redux";
+import { RouterPath } from '../../_helpers/RoutePath';
 
   
 
@@ -50,7 +51,7 @@ import { useDispatch, useSelector } from "react-redux";
             </div>
             <div className="site-header__end">
               <li>
-                <Link to="/cart">My cart</Link>
+                <Link to={RouterPath.CART_LIST}>My cart</Link>
               </li>
 
               <li>

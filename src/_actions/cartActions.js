@@ -1,6 +1,7 @@
 import axios from "axios";
 import { ActionType } from "../_ActionType";
 import Auth from "../_helpers/auth";
+import { RouterPath } from "../_helpers/RoutePath";
 
 export const setAddToCart = (data) => ({
   type: ActionType.ADD_TO_CART,
@@ -23,7 +24,7 @@ export const requestAddToCartAction = (item, quantity) => {
    return async (dispatch, action) => {
     try {
       const response = await axios.post(
-        "http://localhost:8080/cart",
+        `${RouterPath.BASE_URL}/cart`,
         {
           product: {
             id: id,
