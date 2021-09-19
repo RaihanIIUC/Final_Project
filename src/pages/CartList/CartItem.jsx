@@ -7,7 +7,7 @@ import {
 } from "../../_actions/cartActions";
 import { RouterPath } from "../../_helpers/RoutePath";
  import { Wrapper } from "./CartItem.styles";
- 
+ import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
  
  
 const CartItem = ( ) => {
@@ -38,6 +38,10 @@ const removeFromCart = (e, productId, existingQuantity )=> {
  console.log(existingQuantity-1, null, ' ');
  }
 
+ const deleteHandler = ( productId) => {
+   dispatch(requestAddToCartAction(productId, 0));
+   console.log('product remove from cart');
+ }
 
  cartList.map((product) => {
    const products = product.productId;
@@ -55,7 +59,7 @@ const removeFromCart = (e, productId, existingQuantity )=> {
                 <h3>{product.productId.title}</h3>
                 <div className="information">
                   <p>Price: ${product.productId.price}</p>
-                  <p>Total: $</p>
+                  <p>Total: ${product.productId.price * product.quantity}</p>
                 </div>
                 <div className="buttons">
                   <Button
@@ -73,11 +77,17 @@ const removeFromCart = (e, productId, existingQuantity )=> {
                     size="small"
                     disableElevation
                     variant="contained"
-                    onClick={(e) => addToCart(e,product.productId, product.quantity)}
+                    onClick={(e) =>
+                      addToCart(e, product.productId, product.quantity)
+                    }
                   >
                     +
                   </Button>
                 </div>
+                <p  onClick={() => deleteHandler(product.productId)}>
+                  <DeleteForeverIcon
+                                     />
+                </p>
               </div>
               <img
                 src={`${RouterPath.BASE_URL}${product.productId.image}`}
