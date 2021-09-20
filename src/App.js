@@ -18,6 +18,7 @@ import { RouterPath } from "./_helpers/RoutePath";
 import ProudctList from "./pages/Product/All_product/ProudctList";
 import ProductDetails from "./pages/Product/ProductOverView/ProductDetails";
 import Cart from "./pages/CartList/cart";
+import All from "./pages/Product/All_product/all";
 function App() {
   const dispatch = useDispatch();
   const history = useHistory();
@@ -42,6 +43,7 @@ function App() {
         <Route exact path="/signin" component={Login} />
 
         <Route exact path="/home" component={Home} />
+        <Route exact path="/all" component={All} />
         <Route exact path="/" component={Home} />
         <Route exact path="/userin" component={Login} />
         {/* <AdminRoute path="/cartlist" component={CartList} /> */}

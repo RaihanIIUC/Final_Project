@@ -6,7 +6,7 @@ import ShoppingCartOutlinedIcon from "@material-ui/icons/ShoppingCartOutlined";
  import Badge from "@mui/material/Badge";
 import { useDispatch, useSelector } from "react-redux";
 import { RouterPath } from '../../_helpers/RoutePath';
-import { requestCart } from '../../_actions/cartActions';
+import { requestCart, requestCartLength } from '../../_actions/cartActions';
 
   
 
@@ -18,7 +18,7 @@ import { requestCart } from '../../_actions/cartActions';
     const  cartLength = cartList?.length;
     useEffect(() => {
      dispatch(requestCart());
-    }, [])
+     }, [])
   
  
     return (

@@ -4,9 +4,7 @@ import { Grid } from "@material-ui/core";
  import axios from "axios";
 import { Button } from "@material-ui/core";
 import AddIcon from "@material-ui/icons/Add";
-
- 
-import { useDispatch, useSelector } from "react-redux";
+  import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { getAllProductAction } from "../../../_actions/productAction";
 import Loader from "../../../components/Loader/Loader";
@@ -18,6 +16,8 @@ import {
 import Auth from "../../../_helpers/auth";
 import { signOut } from "../../../_actions/userActions";
 import Home from "../../Home/Home";
+import "./product.scss";
+import AddShoppingCartOutlinedIcon from "@mui/icons-material/AddShoppingCartOutlined";
 
 export const ShirtWrapper = styled(Grid)`
   img {
@@ -89,39 +89,43 @@ const ProudctList = () => {
     <Loader />
   ) : (
     <Home>
-      <Grid container spacing={1} justifyContent={"center"}>
-        <Grid item md={12}>
-          <Grid item md={9} justifyContent={"center"}>
-            Shirt List
-          </Grid>
-        </Grid>
+      {!isFound && <p>No Shirt Found</p>}
+      <div class="card__collection clear-fix">
         {!isFound && <p>No Shirt Found</p>}
 
         {products.map((product, index) => (
-          <ShirtWrapper item md={4}>
+          <div class="cards cards--two">
             <img
               src={`http://localhost:8080${product?.image}`}
-              style={{ width: "60%", height: "40%" }}
-              alt={product?.title}
+              class="img-responsive"
+              alt="Cards Image"
             />
-
-            <ShirtWrapper md={9} justifyContent={"center"}>
-              <p key={index}>{product.title} </p>
-              <p className="description">
-                {product?.description}{" "}
-                <span onClick={() => handleCartAdd(product)}>
-                  <AddIcon className="btn-floating halfway-fab waves-effect waves-light red" />
-                </span>
-              </p>
-              <Button variant="outlined" color="primary">
-                see details
-              </Button>
-            </ShirtWrapper>
-          </ShirtWrapper>
+            <span class="cards--two__rect"></span>
+            <span class="cards--two__tri"></span>
+            <p key={index}>{product.title} </p>
+            <ul class="cards__list">
+              <li>
+                <h4>Price : ${product.price} </h4>
+              </li>
+              <li></li>
+              <li>
+                <h4 onClick={() => handleCartAdd(product)}>
+                  <AddShoppingCartOutlinedIcon
+                    style={{ fontSize: 30, noPointer }}
+                  />
+                </h4>
+              </li>
+            </ul>
+          </div>
         ))}
-      </Grid>
+      </div>
+     
     </Home>
   );
 };
 
+const noPointer = { cursor: "default" };
+
+
 export default ProudctList;
+ 

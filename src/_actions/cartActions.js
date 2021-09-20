@@ -47,6 +47,7 @@ export const requestAddToCartAction = (item, quantity) => {
       dispatch(setAddToCart(response.data));
       console.log(response.data,null, '');
       dispatch(requestCart());
+      dispatch()
     } catch (error) {
       console.log(error, null,' ');
     }
@@ -71,7 +72,7 @@ export const requestCart = () => {
     }
   };
 };
-
+ 
 
 export const requestCheckOut = () => {
   return async (dispatch) => {
