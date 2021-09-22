@@ -16,8 +16,7 @@ function Home({ children }) {
 
 
   useEffect(() => {
-    dispatch(requestCart());
-    setInterval(() => {
+     setInterval(() => {
       setrestLoader(false);
     }, 2000);
   }, [restloader]);

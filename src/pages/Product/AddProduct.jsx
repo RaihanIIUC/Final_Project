@@ -80,7 +80,7 @@ function AddProduct() {
  
   }, []);
 
-  const { categorys } = useSelector((store) => store.categoryStore);
+  const { categories } = useSelector((store) => store.categoryStore);
 
   const handleFileRead = async (event, key) => {
     const file = event.target.files[0];
@@ -155,7 +155,7 @@ function AddProduct() {
               value={product.category._id}
               onChange={(e) => productData(e, "_id")}
             >
-              {categorys.map((cat, index) => {
+              {categories.map((cat, index) => {
                 return (
                   <option key={index} value={cat._id}>
                     {cat.name}
@@ -197,7 +197,6 @@ function AddProduct() {
           >
             Product Add
           </button>
-          
         </div>
       </Home>
     </>

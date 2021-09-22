@@ -72,6 +72,14 @@ const  Sidebar =({ children }) => {
                       <span className="item">Category List</span>
                     </Link>
                   </li>
+                  <li>
+                    <Link to={RouterPath.USER_LIST_PAGE}>
+                      <span className="icon">
+                        <i className="fas fa-chart-line"></i>
+                      </span>
+                      <span className="item">User List</span>
+                    </Link>
+                  </li>
      
                 </ul>
               </div>

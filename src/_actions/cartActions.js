@@ -84,19 +84,20 @@ export const requestCart = () => {
     const { userStore} = getState();
     const { user } = userStore;
     const { userInfo } = user;
+    console.log(userInfo,NaN);
     const { token } = userInfo;    
       const bearerToken = () => {
        return `bearer ${token}`;
      };
      try {
-      const response = await axios.get("http://localhost:8080/cart", {
+      const response = await axios.get("http://localhost:8080/cart",{
         headers: {
           Authorization: bearerToken(),
         },
       });
       dispatch(setCart(response.data));
  
-    } catch (err) {
+    }catch (err) {
          Swal.fire(`${err}`, `Request Cart Failed`, "error");
     }
   };
@@ -109,6 +110,7 @@ export const requestCheckOut = () => {
       const { user } = userStore;
       const { userInfo } = user;
       const { token } = userInfo;  
+      console.log(token);
       const bearerToken = () => {
        return `bearer ${token}`;
      };

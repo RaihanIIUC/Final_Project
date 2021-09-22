@@ -9,13 +9,14 @@ import { Wrapper } from "../CartList/CartItem.styles";
  
 import Home from "../Home/Home";
 import { getAllCategoryAction, requestDeleteCategory } from "../../_actions/categoryAction";
+import { Link } from "react-router-dom";
 
 const CategoryList = () => {
   const history = useHistory();
   const dispatch = useDispatch();
-  const { categorys } = useSelector((store) => store.categoryStore);
+  const { categories } = useSelector((store) => store.categoryStore);
 
-   
+  console.log(categories, NaN, " category");
 
   useEffect(() => {
     dispatch(getAllCategoryAction());
@@ -28,7 +29,7 @@ const CategoryList = () => {
   
   return (
     <Home>
-      {categorys.map((category) => {
+      {categories.map((category) => {
         return (
           <>
             <Wrapper>
@@ -42,7 +43,11 @@ const CategoryList = () => {
                   <DeleteForeverIcon />
                 </p>
               </div>
-              <Button>Edit</Button>
+              <Button>
+                <Link to={`${RouterPath.CATEGORY_EDIT_PAGE}/${category._id}`}>
+                  Edit
+                </Link>
+              </Button>
             </Wrapper>
           </>
         );

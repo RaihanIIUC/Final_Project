@@ -12,6 +12,13 @@ export const RouterPath = {
   ROOT_PAGE: "/",
 
   CATEGORY_LIST_PAGE: "/categories",
+  CATEGORY_EDIT_PAGE: '/edit_category',
+
+  //user LIst
+  USER_LIST_PAGE: '/users',
+  USER_EDIT_PAGE: '/edit_user',
+  
+  
 };
 
  

@@ -20,6 +20,7 @@ import ProductDetails from "./pages/Product/ProductOverView/ProductDetails";
 import Cart from "./pages/CartList/cart";
 import All from "./pages/Product/All_product/all";
 import CategoryList from "./pages/Category/CategoryList";
+import EditCategory from "./pages/Category/EditCategory";
 function App() {
   const dispatch = useDispatch();
   const history = useHistory();
@@ -37,9 +38,8 @@ function App() {
   //    }
   //  }, [])
 
-  return   (
+  return (
     <div className="App">
-    
       <Switch>
         <Route exact path="/signin" component={Login} />
 
@@ -47,10 +47,18 @@ function App() {
         <Route exact path="/all" component={All} />
         <Route exact path="/" component={Home} />
         <Route exact path="/userin" component={Login} />
-        <AdminRoute path={RouterPath.CATEGORY_LIST_PAGE} component={CategoryList} />
+        <AdminRoute
+          path={RouterPath.CATEGORY_LIST_PAGE}
+          component={CategoryList}
+        />
         <Route path={RouterPath.CART_LIST} component={Cart} />
         <AdminRoute path="/category" component={Category} />
+        <AdminRoute
+          path={`${RouterPath.CATEGORY_EDIT_PAGE}/:id`}
+          component={EditCategory}
+        />
         <AdminRoute path="/product" component={AddProduct} />
+        <AdminRoute path={RouterPath.USER_LIST_PAGE} component={} />
         <Route path="/products/:id" component={ProductDetails} />
         <AdminRoute path={RouterPath.PRODUCTS} component={ProudctList} />
         <UserRoute path="/product" component={Product} />
