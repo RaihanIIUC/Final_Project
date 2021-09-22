@@ -1,6 +1,7 @@
 import axios from "axios";
 import { ActionType } from "../_ActionType";
 import Auth from "../_helpers/auth";
+ import Swal from "sweetalert2";
 
 export const setCategoryData = (category) => {
   return {
@@ -29,48 +30,89 @@ export const setAllCategoryFailed = (error) => {
  
 
 export const categoryAddAction  = (category) => {
-  return async (dispatch, action) => {
-    try {
-      const response = await axios.post(
-        "http://localhost:8080/category",
-        {
-          name: category.name,
-          description: category.description,
-          image: category.image,
-        },
-        {
-          headers: {
-            Authorization: Auth.getToken(),
-          },
-        }
-      );
+   return async (dispatch, getState) => {
+     const { userStore } = getState();
+     const { user } = userStore;
+     const { userInfo } = user;
+     const { token } = userInfo;  
+      const bearerToken = () => {
+       return `bearer ${token}`;
+     };
+     try {
+       const response = await axios.post(
+         "http://localhost:8080/category",
+         {
+           name: category.name,
+           description: category.description,
+           image: category.image,
+         },
+         {
+           headers: {
+             Authorization: bearerToken(),
+           },
+         }
+       );
 
-      dispatch(setCategoryData(response.data));
+       dispatch(setCategoryData(response.data));
+       Swal.fire("Good job!", `${category.name} added successfully`, "success");
      } catch (error) {
-      dispatch(setCategoryInsertError(error.response));
-    }
-  };
+       dispatch(setCategoryInsertError(error.response));
+       Swal.fire(`${error.response}`, `${category.name} added failed`, "error");
+     }
+   };
 };
  
 
 export const getAllCategoryAction  = ( ) => {
-  return async (dispatch, action) => {
+  return async (dispatch, getState) => {
+    const { userStore } = getState();
+    const { user } = userStore;
+    const { userInfo } = user;
+    const { token } = userInfo;  
+    const bearerToken = () => {
+      return `bearer ${token}`;
+    };
     try {
       const response = await axios.get(
-        "http://localhost:8080/category",{},
+        "http://localhost:8080/category",
+        {},
         {
           headers: {
-            Authorization: Auth.getToken(),
+            Authorization: bearerToken(),
           },
         }
       );
-    
+
       dispatch(setAllCategorySuccess(response.data));
- 
-     } catch (error) {
+    } catch (error) {
       dispatch(setAllCategoryFailed(error.response));
-  
     }
   };
 };
  
+export const requestDeleteCategory =(cid,category) =>{
+ return async (dispatch, getState) => {
+ const { userStore } = getState();
+ const { user } = userStore;
+ const { userInfo } = user;
+ const { token } = userInfo;  
+   const bearerToken = () => {
+     return `bearer ${token}`;
+   };
+   try {
+     const { data } = await axios.delete(
+       `http://localhost:8080/category/${cid}`,
+       {
+         headers: {
+           Authorization:  bearerToken(),
+         },
+       }
+     );
+     dispatch(getAllCategoryAction());
+     Swal.fire(`${category.name}`, `${category.name} Deleted`, "success");
+   } catch (error) {
+     console.log(error, null, " ");
+     Swal.fire(`${error}`, `${category.name} Deleted failed`, "error");
+   }
+ };
+}

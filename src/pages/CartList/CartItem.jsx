@@ -14,6 +14,7 @@ import { useHistory } from "react-router";
 const CartItem = ( ) => {
   const history = useHistory();
   const dispatch = useDispatch();
+  const [isCartFound, setIsFound] = useState(true);
    const { cartList } = useSelector((store) => store.cartStore);
 
    const  len = cartList?.length;
@@ -27,39 +28,31 @@ const CartItem = ( ) => {
    dispatch(requestCart());
    if (!len || !cartList) {
      history.push(`${RouterPath.PRODUCTS}`);
+     setIsFound(false);
    }
+   
  }, [ ])
 
 const addToCart = (e, productId, existingQuantity) => {
   e.preventDefault();
   dispatch(requestAddToCartAction(productId, existingQuantity + 1));
-  console.log(existingQuantity + 1, null, undefined, ' ');
-// window.location.reload(false);
-};
+  };
 
 
 const removeFromCart = (e, productId, existingQuantity )=> {
     e.preventDefault();
    dispatch(requestAddToCartAction(productId, existingQuantity - 1));
- console.log(existingQuantity-1, null, ' ');
-// window.location.reload(false);
-}
+  }
 
  const deleteHandler = ( productId) => {
    dispatch(requestAddToCartAction(productId, 0));
-   console.log("product remove from cart");
-   window.location.reload(false);
- }
+   }
 
- cartList.map((product) => {
-   const products = product.productId;
-
-   console.log(products, null, undefined, "");
- });
+ 
   return (
     <>
+      {!isCartFound && <>No data found</>}
       {cartList.map((product) => {
-        
         return (
           <>
             <Wrapper>
@@ -75,7 +68,7 @@ const removeFromCart = (e, productId, existingQuantity )=> {
                     disableElevation
                     variant="contained"
                     onClick={(e) =>
-                      removeFromCart(e, product.productId._id, product.quantity)
+                      removeFromCart(e, product.productId, product.quantity)
                     }
                   >
                     -
@@ -101,8 +94,6 @@ const removeFromCart = (e, productId, existingQuantity )=> {
                 alt=" "
               />
             </Wrapper>
-
-           
           </>
         );
       })}

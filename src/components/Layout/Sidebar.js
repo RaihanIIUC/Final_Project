@@ -65,11 +65,11 @@ const  Sidebar =({ children }) => {
                     </Link>
                   </li>
                   <li>
-                    <Link to="#">
+                    <Link to={RouterPath.CATEGORY_LIST_PAGE}>
                       <span className="icon">
                         <i className="fas fa-chart-line"></i>
                       </span>
-                      <span className="item">Reports</span>
+                      <span className="item">Category List</span>
                     </Link>
                   </li>
      

@@ -19,6 +19,7 @@ import ProudctList from "./pages/Product/All_product/ProudctList";
 import ProductDetails from "./pages/Product/ProductOverView/ProductDetails";
 import Cart from "./pages/CartList/cart";
 import All from "./pages/Product/All_product/all";
+import CategoryList from "./pages/Category/CategoryList";
 function App() {
   const dispatch = useDispatch();
   const history = useHistory();
@@ -27,7 +28,7 @@ function App() {
   const userSignIn = useSelector((store) => store.userStore);
   const { loggedIn, user } = userSignIn;
   //  const admin = Auth.Admin_Role();
-  //  const userRole = Auth.User_Role();
+  //  cons-t userRole = Auth.User_Role();
   //  useEffect(() => {
   //    if(Auth.Admin_Role){
   //      history.push('/home');
@@ -46,13 +47,13 @@ function App() {
         <Route exact path="/all" component={All} />
         <Route exact path="/" component={Home} />
         <Route exact path="/userin" component={Login} />
-        {/* <AdminRoute path="/cartlist" component={CartList} /> */}
+        <AdminRoute path={RouterPath.CATEGORY_LIST_PAGE} component={CategoryList} />
         <Route path={RouterPath.CART_LIST} component={Cart} />
         <AdminRoute path="/category" component={Category} />
         <AdminRoute path="/product" component={AddProduct} />
         <Route path="/products/:id" component={ProductDetails} />
         <AdminRoute path={RouterPath.PRODUCTS} component={ProudctList} />
-        {/* <UserRoute path="/product" component={Product} /> */}
+        <UserRoute path="/product" component={Product} />
       </Switch>
     </div>
   );

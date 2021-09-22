@@ -18,6 +18,7 @@ import { signOut } from "../../../_actions/userActions";
 import Home from "../../Home/Home";
 import "./product.scss";
 import AddShoppingCartOutlinedIcon from "@mui/icons-material/AddShoppingCartOutlined";
+import { RouterPath } from "../../../_helpers/RoutePath";
 
 export const ShirtWrapper = styled(Grid)`
   img {
@@ -53,7 +54,8 @@ const ProudctList = () => {
   const [isFound, setIsFound] = useState(false);
   const { products  } = useSelector((store) => store.productStore);
    const { itemNumber } = useSelector((store) => store.cartStore);
-  
+    const userSignIn = useSelector((store) => store.userStore);
+    const { loggedIn, user } = userSignIn;
   const history = useHistory();
   const [restloader, setrestLoader] = useState(true);
   
@@ -72,17 +74,19 @@ const ProudctList = () => {
       setIsFound(true);
     }
   }, [isFound]);
-
-  // const handleCartClick =(item) => {
-  //   dispatch(requestaddToCartAction(item));
-  //  }
+ 
 
   const handleCartAdd = (product) => {
+    if(loggedIn){
+      const firstAdd = true;
      const cartValue = itemNumber + 1;
-   dispatch(setCartQuantityData(cartValue));
-    const quantity = 1; 
- dispatch(requestAddToCartAction(product , quantity));
-  
+     dispatch(setCartQuantityData(cartValue));
+     const quantity = 1;
+     dispatch(requestAddToCartAction(product, quantity, firstAdd ));
+      }else{
+      history.push(`${RouterPath.PRODUCTS}`);
+    }
+
   };
 
   return restloader ? (
@@ -91,8 +95,6 @@ const ProudctList = () => {
     <Home>
       {!isFound && <p>No Shirt Found</p>}
       <div class="card__collection clear-fix">
-        {!isFound && <p>No Shirt Found</p>}
-
         {products.map((product, index) => (
           <div class="cards cards--two">
             <img

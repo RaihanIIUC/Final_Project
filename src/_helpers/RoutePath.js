@@ -8,8 +8,10 @@ export const RouterPath = {
   CART_LIST: "/cartlist",
   BASE_URL: "http://localhost:8080",
 
- LOGIN_PAGE : "/signin",
- ROOT_PAGE : "/",
+  LOGIN_PAGE: "/signin",
+  ROOT_PAGE: "/",
+
+  CATEGORY_LIST_PAGE: "/categories",
 };
 
  

@@ -13,6 +13,8 @@ import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 import PhotoCamera from "@material-ui/icons/PhotoCamera";
 import Home from "../Home/Home";
+ import Swal from "sweetalert2";
+ 
 
 const customStyles = (value) => ({
   control: (provided, state) => ({
@@ -51,6 +53,7 @@ function AddProduct() {
       _id: "",
     },
   });
+ 
 
   const productData = (e, key) => {
     setProduct({
@@ -65,6 +68,8 @@ function AddProduct() {
 
     dispatch(productAddAction(product));
     console.log(product);
+
+ 
   };
 
   useEffect(() => {
@@ -192,6 +197,7 @@ function AddProduct() {
           >
             Product Add
           </button>
+          
         </div>
       </Home>
     </>
