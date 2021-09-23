@@ -21,7 +21,11 @@ import Cart from "./pages/CartList/cart";
 import All from "./pages/Product/All_product/all";
 import CategoryList from "./pages/Category/CategoryList";
 import EditCategory from "./pages/Category/EditCategory";
-function App() {
+import UserList from "./pages/user/UserList";
+import EditUser from "./pages/user/editUser";
+
+
+ function App() {
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -58,7 +62,11 @@ function App() {
           component={EditCategory}
         />
         <AdminRoute path="/product" component={AddProduct} />
-        <AdminRoute path={RouterPath.USER_LIST_PAGE} component={} />
+        <AdminRoute path={RouterPath.USER_LIST_PAGE} component={UserList} />
+        <AdminRoute
+          path={`${RouterPath.USER_LIST_PAGE}/:id`}
+          component={EditUser}
+        />
         <Route path="/products/:id" component={ProductDetails} />
         <AdminRoute path={RouterPath.PRODUCTS} component={ProudctList} />
         <UserRoute path="/product" component={Product} />

@@ -25,7 +25,12 @@ export const setUserLogOut = () => {
   };
 };
 
-
+export const setAllUserPayload = (users) => {
+  return {
+    type: ActionType.USERS_DATA,
+    payload: users,
+  };
+};
 
 export const signIn = (user ) => {
   return async (dispatch, action) => {
@@ -51,3 +56,58 @@ export const signOut = () => {
 
    }
 }
+
+
+
+export const getAllUserAction = () => {
+  return async (dispatch, getState) => {
+    const { userStore } = getState();
+    const { user } = userStore;
+    const { userInfo } = user;
+    const { token } = userInfo;
+    const bearerToken = () => {
+      return `bearer ${token}`;
+    };
+    try {
+      const response = await axios.get("http://localhost:8080/user", {
+        headers: {
+          Authorization: bearerToken(),
+        },
+      });
+
+      dispatch(setAllUserPayload(response.data));
+    } catch (error) {
+     console.log(error.response,NaN,'');
+    }
+  };
+};
+
+
+export const requestDeleteUser = (uid , user) => {
+  return async (dispatch, getState) => {
+    const { userStore } = getState();
+    const { user } = userStore;
+    const { userInfo } = user;
+    const { token } = userInfo;
+    const bearerToken = () => {
+      return `bearer ${token}`;
+    };
+    try {
+      const { data } = await axios.delete(
+        `http://localhost:8080/user/${uid}`,
+        {
+          headers: {
+            Authorization: bearerToken(),
+          },
+        }
+      );
+      dispatch(getAllUserAction());
+      Swal.fire(`${user.email}`, `${user.username} Deleted`, "success");
+    } catch (error) {
+      console.log(error, null, " ");
+      Swal.fire(`${error}`, `${user.email} Deleted failed`, "error");
+    }
+  };
+};
+
+ 

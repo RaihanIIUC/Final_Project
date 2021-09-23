@@ -6,6 +6,7 @@ const userState = {
   error : [],
   loggedIn : false,
   loader : true ,
+  users : []
  
 };
 
@@ -23,6 +24,8 @@ const userReducer = (state = userState, action) => {
       };
     case ActionType.USER_SIGNOUT:
       return { ...state, user: [], loggedIn: false };
+    case ActionType.USERS_DATA:
+      return { ...state, users :action.payload  };
     default:
       return state;
   }
