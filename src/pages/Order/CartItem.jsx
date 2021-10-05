@@ -52,7 +52,7 @@ const removeFromCart = (e, productId, existingQuantity )=> {
   return (
     <>
       {!isCartFound && <>No data found</>}
-      { isCartFound &&  cartList?.map((product) => {
+      {cartList.map((product) => {
         return (
           <>
             <Wrapper>

@@ -3,6 +3,7 @@ import { ActionType } from "../_ActionType";
 import Auth from "../_helpers/auth";
 import { RouterPath } from "../_helpers/RoutePath";
  import Swal from "sweetalert2";
+import { history } from "../_helpers/history";
 
 export const setAddToCart = (data) => ({
   type: ActionType.ADD_TO_CART,
@@ -121,12 +122,15 @@ export const requestCheckOut = () => {
         authorization: bearerToken(),
       },
     });
+    history.push(`${RouterPath.PRODUCTS}`);
     dispatch(setCheckOut(data));
            Swal.fire(
              "Good job!",
              `Order CheckedOut successfully`,
              "success"
            );
+     window.location.reload();
+
   }catch(error){
       Swal.fire(`${error}`, `Order CheckedOut failed`, "error");
   }

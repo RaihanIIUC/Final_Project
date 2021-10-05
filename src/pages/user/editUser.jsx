@@ -19,27 +19,28 @@ function EditUser() {
   const dispatch = useDispatch();
   const [restloader, setrestLoader] = useState(true);
   const { user  } = useSelector((store) => store.userStore);
-  console.log(user, NaN, "  ");
-   const [userUpdate, setUserUpdate] = useState({
+  const { userInfo } = user;
+
+  const [userUpdate, setUserUpdate] = useState({
      email: user.email,
      username: user.username,
      password: user.password,
      firstname: user.firstname,
      lastname: user.lastname,
      address: {
-       city: user.address.city,
-       street: user.address.street,
-       number: user.address.number,
-       zipcode: user.address.zipcode,
+       city: user.address?.city,
+       street: user.address?.street,
+       number: user.address?.number,
+       zipcode: user.address?.zipcode,
        geolocation: {
-         lat: user.address.geolocation.lat,
-         long: user.address.geolocation.long,
+         lat: user.address?.geolocation.lat,
+         long: user.address?.geolocation.long,
        },
      },
      phone: user.phone,
    });
 
-   
+   console.log(userInfo, null, " user data");
 
   const UserDataUpdate = (e, key) => {
     setUserUpdate({
@@ -70,12 +71,10 @@ function EditUser() {
           <input
             id="categoryName"
             className="input"
-            type="text"
-            placeholder=" "
-            value={userUpdate.email}
+            type="email"
             onChange={(e) => UserDataUpdate(e, "email")}
           />
-          <label className="placeholder">Category Email </label>
+          <label className="placeholder"> </label>
         </div>
         <div className="input-container ic2">
           <input
@@ -86,7 +85,7 @@ function EditUser() {
             value={userUpdate.username}
             onChange={(e) => UserDataUpdate(e, "username")}
           />
-          <label className="placeholder">UserName</label>
+          <label className="placeholder">{userUpdate.username}</label>
         </div>
         <div className="input-container ic2">
           <input
@@ -198,9 +197,9 @@ function EditUser() {
           />
           <label className="placeholder">phone</label>
         </div>
-      
+
         <button type="submit" className="submit" onClick={UserUpdateHandler}>
-          User  Update
+          User Update
         </button>
       </div>
     </Home>

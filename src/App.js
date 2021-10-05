@@ -28,19 +28,31 @@ import EditUser from "./pages/user/editUser";
  function App() {
   const dispatch = useDispatch();
   const history = useHistory();
-
+  const [userRole, setUserRole] = useState(false);
+  const [adminRole, setAdminRole] = useState(false);
   const [restloader, setrestLoader] = useState(true);
   const userSignIn = useSelector((store) => store.userStore);
   const { loggedIn, user } = userSignIn;
-  //  const admin = Auth.Admin_Role();
-  //  cons-t userRole = Auth.User_Role();
-  //  useEffect(() => {
-  //    if(Auth.Admin_Role){
-  //      history.push('/home');
-  //    }else{
-  //      dispatch(signOut());
-  //    }
-  //  }, [])
+
+
+ 
+     useEffect(() => {
+      
+  if (loggedIn) {
+    const { userInfo } = user;
+    const { role } = userInfo;
+    if (role === "admin") {
+      console.log("i am from admin");
+     setAdminRole(true);
+    } else if (role === "user") {
+      console.log(" i am from user ");
+      setUserRole(true);
+    } else {
+      console.log("no user");
+    }
+  }
+   }, [])
+ 
 
   return (
     <div className="App">
@@ -56,7 +68,7 @@ import EditUser from "./pages/user/editUser";
           component={CategoryList}
         />
         <Route path={RouterPath.CART_LIST} component={Cart} />
-        <AdminRoute path="/category" component={Category} />
+         <AdminRoute path="/category" component={Category} />
         <AdminRoute
           path={`${RouterPath.CATEGORY_EDIT_PAGE}/:id`}
           component={EditCategory}
@@ -64,13 +76,12 @@ import EditUser from "./pages/user/editUser";
         <AdminRoute path="/product" component={AddProduct} />
         <AdminRoute path={RouterPath.USER_LIST_PAGE} component={UserList} />
         <AdminRoute
-          path={`${RouterPath.USER_LIST_PAGE}/:id`}
+          path={`${RouterPath.USER_EDIT_PAGE}/:id`}
           component={EditUser}
         />
         <Route path="/products/:id" component={ProductDetails} />
-        <AdminRoute path={RouterPath.PRODUCTS} component={ProudctList} />
-        <UserRoute path="/product" component={Product} />
-      </Switch>
+        <Route path={RouterPath.PRODUCTS} component={ProudctList} />
+       </Switch>
     </div>
   );
 }
