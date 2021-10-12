@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { Grid } from "@material-ui/core";
- import axios from "axios";
+import axios from "axios";
 import { Button } from "@material-ui/core";
 import AddIcon from "@material-ui/icons/Add";
-  import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { getAllProductAction } from "../../../_actions/productAction";
 import Loader from "../../../components/Loader/Loader";
@@ -50,43 +50,43 @@ export const ShirtWrapper = styled(Grid)`
 
 const Buttn = styled.button``;
 const ProudctList = () => {
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const [isFound, setIsFound] = useState(false);
-  const { products  } = useSelector((store) => store.productStore);
-   const { itemNumber } = useSelector((store) => store.cartStore);
-    const userSignIn = useSelector((store) => store.userStore);
-    const { loggedIn, user } = userSignIn;
+  const { products } = useSelector((store) => store.productStore);
+  const { itemNumber } = useSelector((store) => store.cartStore);
+  const userSignIn = useSelector((store) => store.userStore);
+  const { loggedIn, user } = userSignIn;
   const history = useHistory();
   const [restloader, setrestLoader] = useState(true);
-  
 
   useEffect(() => {
-    
+    if (!loggedIn) {
+      dispatch(signOut());
+    }
 
     dispatch(getAllProductAction());
+
     setInterval(() => {
       setrestLoader(false);
     }, 2000);
   }, []);
- 
+
   useEffect(() => {
     if (products.length) {
       setIsFound(true);
     }
   }, [isFound]);
- 
 
   const handleCartAdd = (product) => {
-    if(loggedIn){
+    if (loggedIn) {
       const firstAdd = true;
-     const cartValue = itemNumber + 1;
-     dispatch(setCartQuantityData(cartValue));
-     const quantity = 1;
-     dispatch(requestAddToCartAction(product, quantity, firstAdd ));
-      }else{
+      const cartValue = itemNumber + 1;
+      dispatch(setCartQuantityData(cartValue));
+      const quantity = 1;
+      dispatch(requestAddToCartAction(product, quantity, firstAdd));
+    } else {
       history.push(`${RouterPath.PRODUCTS}`);
     }
-
   };
 
   return restloader ? (
@@ -121,13 +121,10 @@ const ProudctList = () => {
           </div>
         ))}
       </div>
-     
     </Home>
   );
 };
 
 const noPointer = { cursor: "default" };
 
-
 export default ProudctList;
- 

@@ -92,6 +92,16 @@ const  Sidebar =({ children }) => {
 
                   {adminRole && (
                     <li>
+                      <Link to={RouterPath.ORDER_STATUS_PAGE}>
+                        <span className="icon">
+                          <i className="fas fa-chart-line"></i>
+                        </span>
+                        <span className="item">Order Status</span>
+                      </Link>
+                    </li>
+                  )}
+                  {adminRole && (
+                    <li>
                       <Link to={RouterPath.CATEGORY_LIST_PAGE}>
                         <span className="icon">
                           <i className="fas fa-chart-line"></i>

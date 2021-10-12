@@ -23,6 +23,8 @@ import CategoryList from "./pages/Category/CategoryList";
 import EditCategory from "./pages/Category/EditCategory";
 import UserList from "./pages/user/UserList";
 import EditUser from "./pages/user/editUser";
+import OrderItem from "./pages/Order/OrderItem";
+import Order from "./pages/Order/Order";
 
 
  function App() {
@@ -75,6 +77,7 @@ import EditUser from "./pages/user/editUser";
         />
         <AdminRoute path="/product" component={AddProduct} />
         <AdminRoute path={RouterPath.USER_LIST_PAGE} component={UserList} />
+        <AdminRoute path={RouterPath.ORDER_STATUS_PAGE} component={Order} />
         <AdminRoute
           path={`${RouterPath.USER_EDIT_PAGE}/:id`}
           component={EditUser}

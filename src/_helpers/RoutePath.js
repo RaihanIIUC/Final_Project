@@ -17,6 +17,9 @@ export const RouterPath = {
   //user LIst
   USER_LIST_PAGE: '/users',
   USER_EDIT_PAGE: '/edit_user',
+
+  // order page 
+  ORDER_STATUS_PAGE : '/order_status',
   
   
 };

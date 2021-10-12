@@ -4,12 +4,11 @@ import Loader from '../../components/Loader/Loader';
  import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
-import CartInsert from "./CartInsert";
-import CartItem from "./CartItem";
-import { Button } from "@material-ui/core";
+  import { Button } from "@material-ui/core";
 import { useDispatch, useSelector } from "react-redux";
 import { requestCheckOut } from "../../_actions/cartActions";
 import { useHistory } from "react-router";
+import OrderItem from "./OrderItem";
 
 
 
@@ -25,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-function Cart() {
+function Order() {
    const dispatch = useDispatch();
    const history = useHistory();
        const [restloader, setrestLoader] = useState(true);
@@ -48,20 +47,14 @@ function Cart() {
     ) : (
       <div>
         <Sidebar>
-          <CartItem />
-          <Button
-            variant="contained"
-            color="success"
-            onClick={() => checkOutHandler()}
-          >
-         Checkout
-          </Button>
+          <OrderItem />
+          
         </Sidebar>
       </div>
     );
 }
 
-export default Cart;
+export default Order;
 
 
 

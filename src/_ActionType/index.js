@@ -38,5 +38,8 @@ export const ActionType = {
   REMOVE_ITEM: "REMOVE_ITEM",
   CART_QUANTITY: "CART_QUANTITY",
   CART_CHECKOUT: "CART_CHECKOUT",
+
+  //order action type
+  ORDER_REQUEST_SUCCESS: "ORDER_REQUEST_SUCCESS",
 };
 

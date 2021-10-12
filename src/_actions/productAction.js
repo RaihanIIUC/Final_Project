@@ -2,6 +2,7 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import { ActionType } from "../_ActionType";
 import Auth from "../_helpers/auth";
+import { history } from "../_helpers/history";
  
 export const setProductData = (category) => {
   return {
@@ -50,6 +51,12 @@ export const productAddAction = (product  ) => {
  const { user } = userStore;
  const { userInfo } = user;
  const { token } = userInfo;  
+
+   if (!token) {
+          Swal.fire(`Please Login first`, "Product add Failed", "error");
+
+     history.push("/");
+   }
    const bearerToken = () => {
      return `bearer ${token}`;
    };
@@ -89,8 +96,11 @@ export const getAllProductAction = () => {
  const { userStore } = getState();
  const { user } = userStore;
  const { userInfo } = user;
+
+   
  const { token } = userInfo;  
-   const bearerToken = () => {
+ 
+ const bearerToken = () => {
      return `bearer ${token}`;
    };
    try {
