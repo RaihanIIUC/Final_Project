@@ -1,8 +1,8 @@
 import axios from "axios";
 import Swal from "sweetalert2";
 import { ActionType } from "../_ActionType";
-import Auth from "../_helpers/auth";
-import { history } from "../_helpers/history";
+import Auth from "../_Redux/_helpers/auth";
+import { history } from "../_Redux/_helpers/history";
  
 export const setProductData = (category) => {
   return {

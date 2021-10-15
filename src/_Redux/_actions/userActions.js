@@ -3,8 +3,8 @@ import persistStore from "redux-persist/es/persistStore";
 import localStorage from "redux-persist/es/storage";
 import storage from "redux-persist/lib/storage";
 import { ActionType } from "../_ActionType";
-import { history } from "../_helpers/history";
-import { RouterPath } from "../_helpers/RoutePath";
+import { history } from "../_Redux/_helpers/history";
+import { RouterPath } from "../_Redux/_helpers/RoutePath";
  import Swal from "sweetalert2";
 
 export const setUserData = (user) => {

@@ -13,12 +13,12 @@ import {
   requestAddToCartAction,
   setCartQuantityData,
 } from "../../_Redux/../_actions/cartActions";
-import Auth from "../../_Redux/../_helpers/auth";
+import Auth from "../../_Redux/../_Redux/_helpers/auth";
 import { signOut } from "../../_Redux/../_actions/userActions";
 import Home from "../../_Redux/Home/Home";
 import "./product.scss";
 import AddShoppingCartOutlinedIcon from "@mui/icons-material/AddShoppingCartOutlined";
-import { RouterPath } from "../../_Redux/../_helpers/RoutePath";
+import { RouterPath } from "../../_Redux/../_Redux/_helpers/RoutePath";
 
 export const ShirtWrapper = styled(Grid)`
   img {
