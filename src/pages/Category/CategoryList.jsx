@@ -2,13 +2,13 @@ import { Button } from "@material-ui/core";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
  
-import { RouterPath } from "../../_helpers/RoutePath";
+import { RouterPath } from "../../_Redux/_helpers/RoutePath";
  import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import { useHistory } from "react-router";
 import { Wrapper } from "../CartList/CartItem.styles";
  
 import Home from "../Home/Home";
-import { getAllCategoryAction, requestDeleteCategory } from "../../_actions/categoryAction";
+import { getAllCategoryAction, requestDeleteCategory } from "../../_Redux/_actions/categoryAction";
 import { Link } from "react-router-dom";
 
 const CategoryList = () => {

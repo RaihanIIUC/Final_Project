@@ -2,7 +2,7 @@ import React from 'react'
 import { useState , useEffect} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Loader from '../../components/Loader/Loader';
-import { signIn, signOut } from '../../_actions/userActions';
+import { signIn, signOut } from '../../_Redux/_actions/userActions';
 import "./login.css";
 import Panda from './panda';
 

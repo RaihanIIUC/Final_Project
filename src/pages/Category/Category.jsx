@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux';
 import Sidebar from '../../components/Layout/Sidebar';
 import Loader from '../../components/Loader/Loader';
-import { categoryAddAction } from '../../_actions/categoryAction';
-import Auth from '../../_helpers/auth';
+import { categoryAddAction } from '../../_Redux/_actions/categoryAction';
+import Auth from '../../_Redux/_helpers/auth';
 import Home from '../Home/Home';
  import "./category.css";
 

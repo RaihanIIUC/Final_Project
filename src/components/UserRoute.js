@@ -4,9 +4,7 @@ import { Switch, Route, Redirect } from "react-router-dom";
 import Cart from "../pages/CartList/cart";
 import Home from "../pages/Home/Home";
 import Login from "../pages/login/Login";
-import Auth from "../_helpers/auth";
-import { history } from "../_helpers/history";
-
+  
 const UserRoute = ({ component: Component, ...rest }) => {
   const { user } = useSelector((store) => store.userStore);
   const { userInfo } = user;

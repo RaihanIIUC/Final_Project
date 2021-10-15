@@ -8,7 +8,7 @@ import CartInsert from "./CartInsert";
 import CartItem from "./CartItem";
 import { Button } from "@material-ui/core";
 import { useDispatch, useSelector } from "react-redux";
-import { requestCheckOut } from "../../_actions/cartActions";
+import { requestCheckOut } from "../../_Redux/_actions/cartActions";
 import { useHistory } from "react-router";
 
 

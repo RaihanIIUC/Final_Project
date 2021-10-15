@@ -4,7 +4,7 @@ import Loader from '../../components/Loader/Loader';
 import Category from '../Category/Category';
 import '../login/login.css';
 import { useDispatch, useSelector } from "react-redux";
-import { requestCart } from "../../_actions/cartActions";
+import { requestCart } from "../../_Redux/_actions/cartActions";
 import Login from "../login/Login";
 
 

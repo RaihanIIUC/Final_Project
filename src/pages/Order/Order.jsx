@@ -6,7 +6,7 @@ import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
   import { Button } from "@material-ui/core";
 import { useDispatch, useSelector } from "react-redux";
-import { requestCheckOut } from "../../_actions/cartActions";
+import { requestCheckOut } from "../../_Redux/_actions/cartActions";
 import { useHistory } from "react-router";
 import OrderItem from "./OrderItem";
 

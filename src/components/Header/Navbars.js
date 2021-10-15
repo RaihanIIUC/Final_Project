@@ -5,9 +5,7 @@ import LogOutMenu from './LogOut';
 import ShoppingCartOutlinedIcon from "@material-ui/icons/ShoppingCartOutlined";
  import Badge from "@mui/material/Badge";
 import { useDispatch, useSelector } from "react-redux";
-import { RouterPath } from '../../_helpers/RoutePath';
-import { requestCart, requestCartLength } from '../../_actions/cartActions';
-
+  
   
 
  function Navbars() {

@@ -2,12 +2,12 @@ import { Button } from "@material-ui/core";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
  
-import { RouterPath } from "../../_helpers/RoutePath";
+import { RouterPath } from "../../_Redux/_helpers/RoutePath";
  import { Wrapper } from "./CartItem.styles";
  import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import { useHistory } from "react-router";
-import { requestOrderList, requestStatusChangeAction } from "../../_actions/OrderActions";
-import { requestAddToCartAction, requestCart } from "../../_actions/cartActions";
+import { requestOrderList, requestStatusChangeAction } from "../../_Redux/_actions/OrderActions";
+import { requestAddToCartAction, requestCart } from "../../_Redux/_actions/cartActions";
  
  
 const OrderItem = ( ) => {

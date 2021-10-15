@@ -9,8 +9,8 @@ import {
   getCategoryByIdAction,
   getAllCategoryAction,
   editCategoryAction,
-} from "../../_actions/categoryAction";
-import Auth from "../../_helpers/auth";
+} from "../../_Redux/_actions/categoryAction";
+import Auth from "../../_Redux/_helpers/auth";
 import Home from "../Home/Home";
 import "./category.css";
 

@@ -2,13 +2,13 @@ import { Button } from "@material-ui/core";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { RouterPath } from "../../_helpers/RoutePath";
+import { RouterPath } from "../../_Redux/_helpers/RoutePath";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import { useHistory } from "react-router";
  import AddCircleIcon from "@mui/icons-material/AddCircle";
   
 import { Link } from "react-router-dom";
-import { getAllUserAction, requestDeleteUser } from "../../_actions/userActions";
+import { getAllUserAction, requestDeleteUser } from "../../_Redux/_actions/userActions";
 import { Wrapper } from "../CartList/CartItem.styles";
 import Home from "../Home/Home";
 import styled from 'styled-components'

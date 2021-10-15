@@ -4,8 +4,8 @@ import axios from "axios";
 import { Link, useParams } from "react-router-dom";
 import { Grid, Button } from "@material-ui/core";
 import { useDispatch, useSelector } from "react-redux";
-import { requestProductDetails } from "../../../_actions/productAction";
-import Loader from "../../../components/Loader/Loader";
+import { requestProductDetails } from "../../_Redux/../_actions/productAction";
+import Loader from "../../_Redux/../components/Loader/Loader";
 
 
 const ProductDetails = () => {

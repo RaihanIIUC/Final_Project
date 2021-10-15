@@ -1,9 +1,7 @@
 import React, { Component } from "react";
 import { useSelector } from "react-redux";
 import { Switch, Route, Redirect } from "react-router-dom";
-import Auth from "../_helpers/auth";
-import { history } from "../_helpers/history";
-
+  
 const AdminRoute = ({ component: Component, ...rest }) => {
 
 

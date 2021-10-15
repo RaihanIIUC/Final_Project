@@ -4,8 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   requestCart,
   requestAddToCartAction,
-} from "../../_actions/cartActions";
-import { RouterPath } from "../../_helpers/RoutePath";
+} from "../../_Redux/_actions/cartActions";
+import { RouterPath } from "../../_Redux/_helpers/RoutePath";
  import { Wrapper } from "./CartItem.styles";
  import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import { useHistory } from "react-router";

@@ -3,8 +3,8 @@ import React from 'react';
 import MenuItem from '@material-ui/core/MenuItem';
 import { Button } from "@material-ui/core";
 import { useDispatch } from 'react-redux';
-import { signOut } from '../../_actions/userActions';
-import { history } from '../../_helpers/history';
+ import { signOut } from '../../_Redux/_actions/userActions';
+import { history } from '../../_Redux/_helpers/history';
 
  function LogOutMenu() {
   const [anchorEl, setAnchorEl] = React.useState(null);
