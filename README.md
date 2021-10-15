@@ -67,6 +67,13 @@ export const getAllProductAction = () => {
 };
 ```
 
+` data from persist store`
+
+```
+  const { products } = useSelector((store) => store.productStore);
+
+```
+
 # Get a single product
  
  ```  
@@ -92,6 +99,23 @@ export const getAllProductAction = () => {
 };
  
  ```
+
+` details from persist store`
+
+```
+
+  const { currentProduct } = useSelector((store) => store.productStore);
+  
+
+```
+
+` request details data `
+
+```
+  const { _id } = useParams();
+  dispatch(requestProductDetails(_id));
+```
+
 
 ### Add new product
 `
@@ -326,6 +350,36 @@ export const requestCart = () => {
 export const setAddToCart = (data) => ({
   type: ActionType.ADD_TO_CART,
   payload: data.products,
+});
+
+```
+
+
+#  Persist as localStorage
+
+` 
+persistReducer
+`
+```
+const persistedUserInfo = persistReducer(persistConfig, userReducer);
+const persistcategoryInfo = persistReducer(persistConfig, categoryReducer);
+const persistProductInfo = persistReducer(persistConfig, productReducer);
+const persistCartItems = persistReducer(persistConfig,cartReducer );
+const persistOrderItems = persistReducer(persistConfig, orderReducer);
+
+```
+
+
+` Main Reducers`
+
+``` 
+
+const mainReducer = combineReducers({
+  userStore: persistedUserInfo,
+  categoryStore: persistcategoryInfo,
+  productStore: persistProductInfo,
+  cartStore: persistCartItems,
+  orderStore: persistOrderItems,
 });
 
 ```
