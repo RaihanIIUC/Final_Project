@@ -1,4 +1,4 @@
-# ClothShop
+# Jonota Store  -- using React Js 
 
 
 ##Backend Node Js Project
