@@ -1,10 +1,9 @@
 import axios from "axios";
 import { ActionType } from "../_ActionType";
-import Auth from "../_Redux/_helpers/auth";
-import { RouterPath } from "../_Redux/_helpers/RoutePath";
- import Swal from "sweetalert2";
-import { history } from "../_Redux/_helpers/history";
-
+   import Swal from "sweetalert2";
+ import { RouterPath } from "../_helpers/RoutePath";
+import { history } from "../_helpers/history";
+ 
 export const setAddToCart = (data) => ({
   type: ActionType.ADD_TO_CART,
   payload: data.products,

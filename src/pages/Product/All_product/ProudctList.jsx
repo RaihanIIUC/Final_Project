@@ -1,24 +1,21 @@
 import React, { useState, useEffect } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { Grid } from "@material-ui/core";
-import axios from "axios";
-import { Button } from "@material-ui/core";
-import AddIcon from "@material-ui/icons/Add";
+
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
-import { getAllProductAction } from "../../_Redux/../_actions/productAction";
-import Loader from "../../_Redux/../components/Loader/Loader";
-import Sidebar from "../../_Redux/../components/Layout/Sidebar";
+
+import "./product.scss";
+import AddShoppingCartOutlinedIcon from "@mui/icons-material/AddShoppingCartOutlined";
+import Loader from "../../../components/Loader/Loader";
+import Home from "../../Home/Home";
+import { signOut } from "../../../_Redux/_actions/userActions";
+import { getAllProductAction } from "../../../_Redux/_actions/productAction";
 import {
   requestAddToCartAction,
   setCartQuantityData,
-} from "../../_Redux/../_actions/cartActions";
-import Auth from "../../_Redux/../_Redux/_helpers/auth";
-import { signOut } from "../../_Redux/../_actions/userActions";
-import Home from "../../_Redux/Home/Home";
-import "./product.scss";
-import AddShoppingCartOutlinedIcon from "@mui/icons-material/AddShoppingCartOutlined";
-import { RouterPath } from "../../_Redux/../_Redux/_helpers/RoutePath";
+} from "../../../_Redux/_actions/cartActions";
+import { RouterPath } from "../../../_Redux/_helpers/RoutePath";
 
 export const ShirtWrapper = styled(Grid)`
   img {

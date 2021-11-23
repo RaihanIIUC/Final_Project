@@ -1,21 +1,15 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, Switch, Route, useHistory, Redirect } from "react-router-dom";
+import { Switch, Route, useHistory } from "react-router-dom";
 import AdminRoute from "./components/AdminRoute";
-import UserRoute from "./components/UserRoute";
 import Category from "./pages/Category/Category";
 import { useEffect, useState } from "react";
 import Home from "./pages/Home/Home";
 import Login from "./pages/login/Login";
 import "./pages/login/login.css";
-import Product from "./pages/Product";
-import { signOut } from "./_actions/userActions";
 import "./App.css";
-import Auth from "./_Redux/_helpers/auth";
-import Loader from "./components/Loader/Loader";
 import AddProduct from "./pages/Product/AddProduct";
-// import { RouterPath } from "./_Redux/_helpers/RoutePath";
- import ProudctList from "./pages/Product/All_product/ProudctList";
+import ProudctList from "./pages/Product/All_product/ProudctList";
 import ProductDetails from "./pages/Product/ProductOverView/ProductDetails";
 import Cart from "./pages/CartList/cart";
 import All from "./pages/Product/All_product/all";
@@ -23,11 +17,10 @@ import CategoryList from "./pages/Category/CategoryList";
 import EditCategory from "./pages/Category/EditCategory";
 import UserList from "./pages/user/UserList";
 import EditUser from "./pages/user/editUser";
-import OrderItem from "./pages/Order/OrderItem";
 import Order from "./pages/Order/Order";
+import { RouterPath } from "./_Redux/_helpers/RoutePath";
 
-
- function App() {
+function App() {
   const dispatch = useDispatch();
   const history = useHistory();
   const [userRole, setUserRole] = useState(false);
@@ -36,25 +29,21 @@ import Order from "./pages/Order/Order";
   const userSignIn = useSelector((store) => store.userStore);
   const { loggedIn, user } = userSignIn;
 
-
- 
-     useEffect(() => {
-      
-  if (loggedIn) {
-    const { userInfo } = user;
-    const { role } = userInfo;
-    if (role === "admin") {
-      console.log("i am from admin");
-     setAdminRole(true);
-    } else if (role === "user") {
-      console.log(" i am from user ");
-      setUserRole(true);
-    } else {
-      console.log("no user");
+  useEffect(() => {
+    if (loggedIn) {
+      const { userInfo } = user;
+      const { role } = userInfo;
+      if (role === "admin") {
+        console.log("i am from admin");
+        setAdminRole(true);
+      } else if (role === "user") {
+        console.log(" i am from user ");
+        setUserRole(true);
+      } else {
+        console.log("no user");
+      }
     }
-  }
-   }, [])
- 
+  }, []);
 
   return (
     <div className="App">
@@ -70,7 +59,7 @@ import Order from "./pages/Order/Order";
           component={CategoryList}
         />
         <Route path={RouterPath.CART_LIST} component={Cart} />
-         <AdminRoute path="/category" component={Category} />
+        <AdminRoute path="/category" component={Category} />
         <AdminRoute
           path={`${RouterPath.CATEGORY_EDIT_PAGE}/:id`}
           component={EditCategory}
@@ -84,7 +73,8 @@ import Order from "./pages/Order/Order";
         />
         <Route path="/products/:id" component={ProductDetails} />
         <Route path={RouterPath.PRODUCTS} component={ProudctList} />
-       </Switch>
+        <Route path="*">404</Route>
+      </Switch>
     </div>
   );
 }

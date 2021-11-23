@@ -1,49 +1,48 @@
 import { Button } from "@material-ui/core";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
- 
+
 import { RouterPath } from "../../_Redux/_helpers/RoutePath";
- import { Wrapper } from "./CartItem.styles";
- import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
-import { useHistory } from "react-router";
-import { requestOrderList, requestStatusChangeAction } from "../../_Redux/_actions/OrderActions";
-import { requestAddToCartAction, requestCart } from "../../_Redux/_actions/cartActions";
- 
- 
-const OrderItem = ( ) => {
+import { Wrapper } from "./CartItem.styles";
+ import { useHistory } from "react-router";
+import {
+  requestOrderList,
+  requestStatusChangeAction,
+} from "../../_Redux/_actions/OrderActions";
+import {
+   requestCart,
+} from "../../_Redux/_actions/cartActions";
+
+const OrderItem = () => {
   const history = useHistory();
   const dispatch = useDispatch();
   const [isCartFound, setIsFound] = useState(true);
-   const { cartList } = useSelector((store) => store.cartStore);
-   const { data  } = useSelector((store) => store.orderStore);
+  const { cartList } = useSelector((store) => store.cartStore);
+  const { data } = useSelector((store) => store.orderStore);
 
-   console.log(...data, NaN);
-   const  len = cartList?.length;
- 
- data.map((item) => {
-   console.log(item.products, undefined);
- })
-  
- useEffect(() => {
-   dispatch(requestCart());
-   dispatch(requestOrderList());
+  console.log(...data, NaN);
+  const len = cartList?.length;
 
-   if (!len || !cartList) {
-     history.push(`${RouterPath.PRODUCTS}`);
-     setIsFound(false);
-   }
-   
- }, [ ])
+  data.map((item) => {
+    console.log(item.products, undefined);
+  });
 
-const statusChangeHandler = (e, orderId, status) => {
-  e.preventDefault();
-  dispatch(requestStatusChangeAction(orderId, status));
-  console.log('hello ');
-};
+  useEffect(() => {
+    dispatch(requestCart());
+    dispatch(requestOrderList());
 
+    if (!len || !cartList) {
+      history.push(`${RouterPath.PRODUCTS}`);
+      setIsFound(false);
+    }
+  }, []);
 
- 
- 
+  const statusChangeHandler = (e, orderId, status) => {
+    e.preventDefault();
+    dispatch(requestStatusChangeAction(orderId, status));
+    console.log("hello ");
+  };
+
   return (
     <>
       {!isCartFound && <>No data found</>}
@@ -105,7 +104,6 @@ const statusChangeHandler = (e, orderId, status) => {
           </>
         );
       })}
-      
     </>
   );
 };

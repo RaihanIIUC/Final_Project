@@ -2,28 +2,23 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { useParams } from "react-router";
-import Sidebar from "../../components/Layout/Sidebar";
-import Loader from "../../components/Loader/Loader";
 import {
-  categoryAddAction,
   getCategoryByIdAction,
-  getAllCategoryAction,
   editCategoryAction,
 } from "../../_Redux/_actions/categoryAction";
-import Auth from "../../_Redux/_helpers/auth";
 import Home from "../Home/Home";
 import "./category.css";
 
 function EditCategory() {
-    const cid = useParams();
-    console.log(cid, NaN, "id");
+  const cid = useParams();
+  console.log(cid, NaN, "id");
   const dispatch = useDispatch();
   const [restloader, setrestLoader] = useState(true);
-   const { category } = useSelector((store) => store.categoryStore);
-   console.log(category,NaN,'  ');
- console.log(category, NaN);
+  const { category } = useSelector((store) => store.categoryStore);
+  console.log(category, NaN, "  ");
+  console.log(category, NaN);
   const [Updatecategory, setCategory] = useState({
-    _id : category?._id,
+    _id: category?._id,
     name: category.name,
     description: category.description,
     image: category.image,
@@ -36,10 +31,10 @@ function EditCategory() {
   const UpdateHandler = (e) => {
     e.preventDefault();
     dispatch(editCategoryAction(Updatecategory));
-   };
+  };
 
   useEffect(() => {
-   dispatch(getCategoryByIdAction(cid));
+    dispatch(getCategoryByIdAction(cid));
 
     setInterval(() => {
       setrestLoader(false);

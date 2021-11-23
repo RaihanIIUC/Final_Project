@@ -1,17 +1,19 @@
 import { Button } from "@material-ui/core";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { RouterPath } from "../../_Redux/_helpers/RoutePath";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
-import { useHistory } from "react-router";
  import AddCircleIcon from "@mui/icons-material/AddCircle";
-  
+
 import { Link } from "react-router-dom";
-import { getAllUserAction, requestDeleteUser } from "../../_Redux/_actions/userActions";
+import {
+  getAllUserAction,
+  requestDeleteUser,
+} from "../../_Redux/_actions/userActions";
 import { Wrapper } from "../CartList/CartItem.styles";
 import Home from "../Home/Home";
-import styled from 'styled-components'
+import styled from "styled-components";
 
 const AddNew = styled(AddCircleIcon)`
   border: 1px solid #000;
@@ -19,10 +21,9 @@ const AddNew = styled(AddCircleIcon)`
   height: 70px;
   background-color: black;
   color: white;
- `;
+`;
 
 const UserList = () => {
-  const history = useHistory();
   const dispatch = useDispatch();
   const { users } = useSelector((store) => store.userStore);
 

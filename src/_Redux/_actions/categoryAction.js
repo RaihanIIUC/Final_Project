@@ -1,9 +1,8 @@
 import axios from "axios";
 import { ActionType } from "../_ActionType";
-import Auth from "../_Redux/_helpers/auth";
- import Swal from "sweetalert2";
-import { RouterPath } from "../_Redux/_helpers/RoutePath";
-import { history } from "../_Redux/_helpers/history";
+  import Swal from "sweetalert2";
+ import { RouterPath } from "../_helpers/RoutePath";
+import { history } from "../_helpers/history";
 
 export const setCategoryData = (category) => {
   return {
@@ -171,7 +170,7 @@ export const editCategoryAction = (category) => {
 
       dispatch(getAllCategoryAction());
       dispatch(setUpdatedCategory(response.data));
-      //  history.push(`${RouterPath.CATEGORY_LIST_PAGE}`);
+      //  history.push(`${RoutePath.CATEGORY_LIST_PAGE}`);
      
       Swal.fire("Good job!", `${category.name} Updated successfully`, "success");
      } catch (error) {

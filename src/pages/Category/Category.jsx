@@ -1,41 +1,34 @@
-import React, { useEffect, useState } from 'react'
-import { useDispatch } from 'react-redux';
-import Sidebar from '../../components/Layout/Sidebar';
-import Loader from '../../components/Loader/Loader';
-import { categoryAddAction } from '../../_Redux/_actions/categoryAction';
-import Auth from '../../_Redux/_helpers/auth';
-import Home from '../Home/Home';
- import "./category.css";
-
+import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { categoryAddAction } from "../../_Redux/_actions/categoryAction";
+import Home from "../Home/Home";
+import "./category.css";
 
 function Category() {
-    const dispatch = useDispatch();
-   const [restloader, setrestLoader] = useState(true);
-   const [category, setCategory] = useState({
-    name : "",
-    description : "",
-    image : " ",
+  const dispatch = useDispatch();
+  const [restloader, setrestLoader] = useState(true);
+  const [category, setCategory] = useState({
+    name: "",
+    description: "",
+    image: " ",
   });
-
 
   const CategoryData = (e, key) => {
     setCategory({ ...category, [key]: e.target.value });
   };
- 
-   
+
   const submitHandler = (e) => {
     e.preventDefault();
     dispatch(categoryAddAction(category));
     console.log(category);
   };
 
+  useEffect(() => {
+    setInterval(() => {
+      setrestLoader(false);
+    }, 2000);
+  }, [restloader]);
 
-   useEffect(() => {
-     setInterval(() => {
-       setrestLoader(false);
-     }, 2000);
-   }, [restloader]);
-   
   return (
     <Home>
       <div className="form">
@@ -78,4 +71,4 @@ function Category() {
   );
 }
 
-export default Category
+export default Category;

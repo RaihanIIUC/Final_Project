@@ -1,20 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import Sidebar from "../../components/Layout/Sidebar";
 import Loader from "../../components/Loader/Loader";
 import { getAllCategoryAction } from "../../_Redux/_actions/categoryAction";
 import { productAddAction } from "../../_Redux/_actions/productAction";
-import { green } from "@material-ui/core/colors";
-import FileBase64 from "react-file-base64";
-import styled from "styled-components";
 
 import Button from "@material-ui/core/Button";
-import IconButton from "@material-ui/core/IconButton";
-import PhotoCamera from "@material-ui/icons/PhotoCamera";
 import Home from "../Home/Home";
- import Swal from "sweetalert2";
- 
 
 const customStyles = (value) => ({
   control: (provided, state) => ({
@@ -32,15 +24,11 @@ const customStyles = (value) => ({
     width: "100%",
   }),
 });
-const fileWrapper = styled.div`
-  width: "100%";
-`;
 
 function AddProduct() {
   const dispatch = useDispatch();
 
   const [restloader, setrestLoader] = useState(true);
-  const [photo, setPhoto] = useState(null);
 
   //state for user
   const [product, setProduct] = useState({
@@ -53,7 +41,6 @@ function AddProduct() {
       _id: "",
     },
   });
- 
 
   const productData = (e, key) => {
     setProduct({
@@ -68,8 +55,6 @@ function AddProduct() {
 
     dispatch(productAddAction(product));
     console.log(product);
-
- 
   };
 
   useEffect(() => {
@@ -77,7 +62,6 @@ function AddProduct() {
     setInterval(() => {
       setrestLoader(false);
     }, 2000);
- 
   }, []);
 
   const { categories } = useSelector((store) => store.categoryStore);

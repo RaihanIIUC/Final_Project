@@ -2,49 +2,42 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { useParams } from "react-router";
-import Sidebar from "../../components/Layout/Sidebar";
-import Loader from "../../components/Loader/Loader";
-import {
-  categoryAddAction,
-  getCategoryByIdAction,
-  getAllCategoryAction,
-  editCategoryAction,
-} from "../../_Redux/_actions/categoryAction";
-import Auth from "../../_Redux/_helpers/auth";
+
 import Home from "../Home/Home";
- 
+
 function EditUser() {
-  const uid  = useParams();
+  const uid = useParams();
   console.log(uid, NaN, "id");
   const dispatch = useDispatch();
   const [restloader, setrestLoader] = useState(true);
-  const { user  } = useSelector((store) => store.userStore);
+  const { user } = useSelector((store) => store.userStore);
   const { userInfo } = user;
 
   const [userUpdate, setUserUpdate] = useState({
-     email: user.email,
-     username: user.username,
-     password: user.password,
-     firstname: user.firstname,
-     lastname: user.lastname,
-     address: {
-       city: user.address?.city,
-       street: user.address?.street,
-       number: user.address?.number,
-       zipcode: user.address?.zipcode,
-       geolocation: {
-         lat: user.address?.geolocation.lat,
-         long: user.address?.geolocation.long,
-       },
-     },
-     phone: user.phone,
-   });
+    email: user.email,
+    username: user.username,
+    password: user.password,
+    firstname: user.firstname,
+    lastname: user.lastname,
+    address: {
+      city: user.address?.city,
+      street: user.address?.street,
+      number: user.address?.number,
+      zipcode: user.address?.zipcode,
+      geolocation: {
+        lat: user.address?.geolocation.lat,
+        long: user.address?.geolocation.long,
+      },
+    },
+    phone: user.phone,
+  });
 
-   console.log(userInfo, null, " user data");
+  console.log(userInfo, null, " user data");
 
   const UserDataUpdate = (e, key) => {
     setUserUpdate({
-      ...userUpdate,[key]: e.target.value,
+      ...userUpdate,
+      [key]: e.target.value,
       address: { ...userUpdate.address, [key]: e.target.value },
       geolocation: { ...userUpdate.address.geolocation, [key]: e.target.value },
     });

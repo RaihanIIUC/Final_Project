@@ -1,9 +1,7 @@
 import axios from "axios";
 import { ActionType } from "../_ActionType";
-import Auth from "../_Redux/_helpers/auth";
-import { RouterPath } from "../_Redux/_helpers/RoutePath";
-import Swal from "sweetalert2";
-import { history } from "../_Redux/_helpers/history";
+  import Swal from "sweetalert2";
+ import { RouterPath } from "../_helpers/RoutePath";
 
 export const setOrderData = (data) => ({
   type: ActionType.ORDER_REQUEST_SUCCESS,

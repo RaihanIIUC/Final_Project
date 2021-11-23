@@ -1,27 +1,21 @@
-import React, { useEffect, useState  } from "react";
-import Sidebar from '../../components/Layout/Sidebar';
-import Loader from '../../components/Loader/Loader';
-import Category from '../Category/Category';
-import '../login/login.css';
-import { useDispatch, useSelector } from "react-redux";
-import { requestCart } from "../../_Redux/_actions/cartActions";
+import React, { useEffect, useState } from "react";
+import Sidebar from "../../components/Layout/Sidebar";
+import "../login/login.css";
+import { useSelector } from "react-redux";
 import Login from "../login/Login";
-
 
 function Home({ children }) {
   const [restloader, setrestLoader] = useState(true);
- const dispatch = useDispatch();
   const userSignIn = useSelector((store) => store.userStore);
   const { loggedIn, user } = userSignIn;
 
-
   useEffect(() => {
-     setInterval(() => {
+    setInterval(() => {
       setrestLoader(false);
     }, 2000);
   }, [restloader]);
 
-  return <>{loggedIn ? <Sidebar>{children}</Sidebar> : <Login />}</>; 
+  return <>{loggedIn ? <Sidebar>{children}</Sidebar> : <Login />}</>;
 }
 
-export default Home
+export default Home;

@@ -1,12 +1,10 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import axios from "axios";
 import { Link, useParams } from "react-router-dom";
 import { Grid, Button } from "@material-ui/core";
 import { useDispatch, useSelector } from "react-redux";
-import { requestProductDetails } from "../../_Redux/../_actions/productAction";
-import Loader from "../../_Redux/../components/Loader/Loader";
-
+import { requestProductDetails } from "../../../_Redux/_actions/productAction";
+import Loader from "../../../components/Loader/Loader";
 
 const ProductDetails = () => {
   const dispatch = useDispatch();
@@ -15,8 +13,8 @@ const ProductDetails = () => {
   const { currentProduct } = useSelector((store) => store.productStore);
   const [found, setFound] = useState(false);
   const { _id } = useParams();
-    const product = currentProduct;
-    console.log(product,null,' current')
+  const product = currentProduct;
+  console.log(product, null, " current");
 
   useEffect(() => {
     dispatch(requestProductDetails(_id));
@@ -26,7 +24,6 @@ const ProductDetails = () => {
     }, 2000);
   }, [restloader, found]);
 
- 
   return restloader ? (
     <Loader />
   ) : (
