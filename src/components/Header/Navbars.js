@@ -40,7 +40,7 @@ function Navbars() {
                   <Link to="home">Home</Link>
                 </li>
                 <li className="nav__item">
-                  <Link to="cart">Cart</Link>
+                  <Link to="/cartlist">Cart</Link>
                 </li>
                 <li className="nav__item">
                   <Link to="product">Product</Link>
@@ -57,7 +57,7 @@ function Navbars() {
             </li>
 
             <li>
-              <Link to="/cart">
+              <Link to="/cartlist">
                 <Badge
                   // onClick={gotoCart}
                   badgeContent={cartLength}

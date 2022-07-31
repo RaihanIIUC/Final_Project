@@ -6,22 +6,19 @@ export const RouterPath = {
 
   //Cart route
   CART_LIST: "/cartlist",
-  BASE_URL: "http://localhost:8080",
+  BASE_URL: "https://fake-comb.herokuapp.com",
+  // BASE_URL: "http://localhost:8080",
 
   LOGIN_PAGE: "/signin",
   ROOT_PAGE: "/",
 
   CATEGORY_LIST_PAGE: "/categories",
-  CATEGORY_EDIT_PAGE: '/edit_category',
+  CATEGORY_EDIT_PAGE: "/edit_category",
 
   //user LIst
-  USER_LIST_PAGE: '/users',
-  USER_EDIT_PAGE: '/edit_user',
+  USER_LIST_PAGE: "/users",
+  USER_EDIT_PAGE: "/edit_user",
 
-  // order page 
-  ORDER_STATUS_PAGE : '/order_status',
-  
-  
+  // order page
+  ORDER_STATUS_PAGE: "/order_status",
 };
-
- 

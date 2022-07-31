@@ -1,7 +1,7 @@
 import axios from "axios";
 import { ActionType } from "../_ActionType";
-  import Swal from "sweetalert2";
- import { RouterPath } from "../_helpers/RoutePath";
+import Swal from "sweetalert2";
+import { RouterPath } from "../_helpers/RoutePath";
 import { history } from "../_helpers/history";
 
 export const setCategoryData = (category) => {
@@ -42,61 +42,58 @@ export const setCategoryByIdFailed = (error) => {
     payload: error,
   };
 };
- export const setUpdatedCategory = (category) => {
-   return {
-     type: ActionType.CATRGORY_UPDATED,
-     payload: category,
-   };
- };
-
- 
-
-export const categoryAddAction  = (category) => {
-   return async (dispatch, getState) => {
-     const { userStore } = getState();
-     const { user } = userStore;
-     const { userInfo } = user;
-     const { token } = userInfo;  
-      const bearerToken = () => {
-       return `bearer ${token}`;
-     };
-     try {
-       const response = await axios.post(
-         "http://localhost:8080/category",
-         {
-           name: category.name,
-           description: category.description,
-           image: category.image,
-         },
-         {
-           headers: {
-             Authorization: bearerToken(),
-           },
-         }
-       );
-
-       dispatch(setCategoryData(response.data));
-       Swal.fire("Good job!", `${category.name} added successfully`, "success");
-     } catch (error) {
-       dispatch(setCategoryInsertError(error.response));
-       Swal.fire(`${error.response}`, `${category.name} added failed`, "error");
-     }
-   };
+export const setUpdatedCategory = (category) => {
+  return {
+    type: ActionType.CATRGORY_UPDATED,
+    payload: category,
+  };
 };
- 
 
-export const getAllCategoryAction  = ( ) => {
+export const categoryAddAction = (category) => {
   return async (dispatch, getState) => {
     const { userStore } = getState();
     const { user } = userStore;
     const { userInfo } = user;
-    const { token } = userInfo;  
+    const { token } = userInfo;
+    const bearerToken = () => {
+      return `bearer ${token}`;
+    };
+    try {
+      const response = await axios.post(
+        "https://fake-comb.herokuapp.com/category",
+        {
+          name: category.name,
+          description: category.description,
+          image: category.image,
+        },
+        {
+          headers: {
+            Authorization: bearerToken(),
+          },
+        }
+      );
+
+      dispatch(setCategoryData(response.data));
+      Swal.fire("Good job!", `${category.name} added successfully`, "success");
+    } catch (error) {
+      dispatch(setCategoryInsertError(error.response));
+      Swal.fire(`${error.response}`, `${category.name} added failed`, "error");
+    }
+  };
+};
+
+export const getAllCategoryAction = () => {
+  return async (dispatch, getState) => {
+    const { userStore } = getState();
+    const { user } = userStore;
+    const { userInfo } = user;
+    const { token } = userInfo;
     const bearerToken = () => {
       return `bearer ${token}`;
     };
     try {
       const response = await axios.get(
-        "http://localhost:8080/category",
+        "https://fake-comb.herokuapp.com/category",
         {
           headers: {
             Authorization: bearerToken(),
@@ -111,16 +108,17 @@ export const getAllCategoryAction  = ( ) => {
   };
 };
 
-export const getCategoryByIdAction  = (cat) => {
-  
+export const getCategoryByIdAction = (cat) => {
   return async (dispatch, getState) => {
     const _id = cat.id;
-    console.log(_id,null);
+    console.log(_id, null);
     const { userStore } = getState();
     const { user } = userStore;
     const { userInfo } = user;
-    const { token } = userInfo; 
-    if(!token && !userInfo ) { history.push('/')} 
+    const { token } = userInfo;
+    if (!token && !userInfo) {
+      history.push("/");
+    }
     const bearerToken = () => {
       return `bearer ${token}`;
     };
@@ -135,14 +133,13 @@ export const getCategoryByIdAction  = (cat) => {
       );
 
       dispatch(setCategoryByIdSuccess(response.data));
-      console.log(response.data,NaN,'id');
+      console.log(response.data, NaN, "id");
     } catch (error) {
       dispatch(setCategoryByIdFailed(error.response));
-      console.log(error.response,NaN,'error id');
+      console.log(error.response, NaN, "error id");
     }
   };
 };
-
 
 export const editCategoryAction = (category) => {
   return async (dispatch, getState) => {
@@ -171,38 +168,46 @@ export const editCategoryAction = (category) => {
       dispatch(getAllCategoryAction());
       dispatch(setUpdatedCategory(response.data));
       //  history.push(`${RoutePath.CATEGORY_LIST_PAGE}`);
-     
-      Swal.fire("Good job!", `${category.name} Updated successfully`, "success");
-     } catch (error) {
+
+      Swal.fire(
+        "Good job!",
+        `${category.name} Updated successfully`,
+        "success"
+      );
+    } catch (error) {
       // dispatch(setCategoryInsertError(error.response));
-      Swal.fire(`${error.response}`, `${category.name} updated failed`, "error");
+      Swal.fire(
+        `${error.response}`,
+        `${category.name} updated failed`,
+        "error"
+      );
     }
   };
 };
- 
-export const requestDeleteCategory =(cid,category) =>{
- return async (dispatch, getState) => {
- const { userStore } = getState();
- const { user } = userStore;
- const { userInfo } = user;
- const { token } = userInfo;  
-   const bearerToken = () => {
-     return `bearer ${token}`;
-   };
-   try {
-     const { data } = await axios.delete(
-       `http://localhost:8080/category/${cid}`,
-       {
-         headers: {
-           Authorization:  bearerToken(),
-         },
-       }
-     );
-     dispatch(getAllCategoryAction());
-     Swal.fire(`${category.name}`, `${category.name} Deleted`, "success");
-   } catch (error) {
-     console.log(error, null, " ");
-     Swal.fire(`${error}`, `${category.name} Deleted failed`, "error");
-   }
- };
-}
+
+export const requestDeleteCategory = (cid, category) => {
+  return async (dispatch, getState) => {
+    const { userStore } = getState();
+    const { user } = userStore;
+    const { userInfo } = user;
+    const { token } = userInfo;
+    const bearerToken = () => {
+      return `bearer ${token}`;
+    };
+    try {
+      const { data } = await axios.delete(
+        `https://fake-comb.herokuapp.com/category/${cid}`,
+        {
+          headers: {
+            Authorization: bearerToken(),
+          },
+        }
+      );
+      dispatch(getAllCategoryAction());
+      Swal.fire(`${category.name}`, `${category.name} Deleted`, "success");
+    } catch (error) {
+      console.log(error, null, " ");
+      Swal.fire(`${error}`, `${category.name} Deleted failed`, "error");
+    }
+  };
+};

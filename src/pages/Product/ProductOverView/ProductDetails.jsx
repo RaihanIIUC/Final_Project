@@ -40,7 +40,7 @@ const ProductDetails = () => {
             <p>{product.category.name}</p>
 
             <img
-              src={`http://localhost:8080${product?.image}`}
+              src={`https://fake-comb.herokuapp.com${product?.image}`}
               style={{ width: "100%" }}
               alt={" it api "}
             />

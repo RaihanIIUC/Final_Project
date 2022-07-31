@@ -95,7 +95,9 @@ const ProudctList = () => {
         {products.map((product, index) => (
           <div class="cards cards--two">
             <img
-              src={`http://localhost:8080${product?.image}`}
+              // src={`http://localhost:8080${product?.image}`}
+              src={`https://fake-comb.herokuapp.com${product?.image}`}
+
               class="img-responsive"
               alt="Cards Image"
             />
