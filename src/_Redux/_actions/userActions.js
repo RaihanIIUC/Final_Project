@@ -3,7 +3,7 @@ import persistStore from "redux-persist/es/persistStore";
 import localStorage from "redux-persist/es/storage";
 import storage from "redux-persist/lib/storage";
 import { ActionType } from "../_ActionType";
-   import Swal from "sweetalert2";
+import Swal from "sweetalert2";
 import { history } from "../_helpers/history";
 
 export const setUserData = (user) => {
@@ -31,32 +31,31 @@ export const setAllUserPayload = (users) => {
   };
 };
 
-export const signIn = (user ) => {
+export const signIn = (user) => {
   return async (dispatch, action) => {
-   const response = await axios.post("http://localhost:8080/signin", {
+    const response = await axios.post(
+      "https://fake-comb.herokuapp.com/signin",
+      {
         email: user.email,
         password: user.password,
-      });
-       const {message ,userInfo   } = response.data;
-       if(userInfo && message){
-       dispatch(setUserData(response.data));
- 
-      }else{
-      dispatch(setUserError(message));
       }
-  }
+    );
+    const { message, userInfo } = response.data;
+    if (userInfo && message) {
+      dispatch(setUserData(response.data));
+    } else {
+      dispatch(setUserError(message));
+    }
+  };
 };
 
 export const signOut = () => {
   return async (dispatch, action) => {
-      dispatch(setUserLogOut());
-     history.push('/');
+    dispatch(setUserLogOut());
+    history.push("/");
     // document.location.reload();
-
-   }
-}
-
-
+  };
+};
 
 export const getAllUserAction = () => {
   return async (dispatch, getState) => {
@@ -76,13 +75,12 @@ export const getAllUserAction = () => {
 
       dispatch(setAllUserPayload(response.data));
     } catch (error) {
-     console.log(error.response,NaN,'');
+      console.log(error.response, NaN, "");
     }
   };
 };
 
-
-export const requestDeleteUser = (uid , user) => {
+export const requestDeleteUser = (uid, user) => {
   return async (dispatch, getState) => {
     const { userStore } = getState();
     const { user } = userStore;
@@ -92,14 +90,11 @@ export const requestDeleteUser = (uid , user) => {
       return `bearer ${token}`;
     };
     try {
-      const { data } = await axios.delete(
-        `http://localhost:8080/user/${uid}`,
-        {
-          headers: {
-            Authorization: bearerToken(),
-          },
-        }
-      );
+      const { data } = await axios.delete(`http://localhost:8080/user/${uid}`, {
+        headers: {
+          Authorization: bearerToken(),
+        },
+      });
       dispatch(getAllUserAction());
       Swal.fire(`${user.email}`, `${user.username} Deleted`, "success");
     } catch (error) {
@@ -108,5 +103,3 @@ export const requestDeleteUser = (uid , user) => {
     }
   };
 };
-
- 
